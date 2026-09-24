@@ -1,0 +1,648 @@
+﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+
+
+
+.main {
+    min-height: 600px;
+    width: 90%;
+    margin: 0 auto;
+   
+}   
+
+.mb-100{
+    margin-bottom:100px;
+}
+
+
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.auth{
+    color:white;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/*html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  
+}
+
+.container{
+    min-height:400px;
+  
+}*/
+
+.client{
+  color:darkgrey;
+
+}
+
+#sidebar-nav {
+    width: 160px;
+}
+
+.menu{
+    display:inline-block;
+  
+   border:2px solid red;
+   
+}
+
+  
+
+
+.menu_margin {
+    display: inline-block;
+    background-color: rgb(173, 173, 133);
+    width: 100px;
+    height: 40px;
+}
+    .menu_margin a {
+        text-align: center;
+        display: block;
+        margin-top:10px;
+    }
+.side {
+   
+    display:flex;
+    height:auto;
+    background-color: rgb(184, 184, 148);
+    margin-bottom: 10px;
+  
+}
+
+
+/*  .side div {
+        display: inline-block;
+        width: 30%;
+    }*/
+.right-side {
+    /* display:flex;*/
+
+    width: 300px;
+    height: 300px;
+ 
+    /* border:2px solid blue;*/
+}
+
+.forma {
+    display: inline-block;
+    width: 300px;
+    min-height: 180px;
+    /* border: 2px solid blue;*/
+    /* background-color:grey;*/
+    margin-bottom: 5px;
+    border-radius:5px;
+   
+    background-color: lightgrey;
+}
+
+.aprasymas {
+    width: 90%;
+    min-height: 180px;
+    background-color: rgb(168, 171, 173, 0,44);
+    display: flex; /* Pridėta flexbox */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+}
+.info{
+   color:black;
+    margin-left:2px;
+   
+    float:right;
+    background-color:grey;
+}
+
+
+
+.headeris {
+    background-color:grey;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    height:50px;
+
+   /* border: 2px solid blue;*/
+}
+
+
+
+
+.textas {
+    resize: none;
+    width: 298px;
+    height: 200px;
+    border: none;
+    outline: none;
+    background-color:lightgrey;
+   
+}
+
+.search{
+   margin-top:15px; 
+ 
+}
+.logg {
+    background: transparent;
+    border: none;
+    color: white; 
+    font-size: 16px;
+}
+.logg:hover{
+    color:red;
+}
+
+
+
+
+
+
+
+
+/*meniu realizacija*/
+.meniu ul, .meniu li {
+    margin: 0;
+    padding: 0;
+}
+
+.meniu ul {
+    text-decoration: none;
+    list-style: none;
+    width: 100%;
+}
+
+.meniu li {
+    float: left;
+    position: relative;
+    width: auto;
+}
+
+
+
+
+.meniu a {
+    width: 250px;
+    text-align: center;
+    padding: 15px 45px;
+    transition: all 0.25s ease; /*cia panasiai kaip animacija*/
+    display: block;
+    text-decoration: none;
+    color: darkgray;
+}
+
+
+.meniu li:hover a {
+    background: rgb(71, 67, 67);
+}
+
+
+.submeniu, .submeniu-desinys {
+    opacity: 0;
+    top: -600px;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+  
+}
+
+li:hover .submeniu {
+    opacity: 1;
+    visibility: visible;
+    top: 45px;
+    
+}
+.submeniu-desinys {
+        left: 250px;
+        top: 0;
+}
+
+.submeniu li:hover .submeniu-desinys {
+        opacity: 1;
+        visibility: visible;
+        top: 0;
+    }
+
+
+.submeniu li:hover>a {
+  /*  background: rgb(26, 26, 26);*/
+    color: white;
+    font-size: 18px;
+}
+
+.submeniu-desinys li:hover>a {
+   /* background: rgb(26, 26, 26);*/
+    color: white;
+    font-size:18px;
+}
+
+.submeniu {
+    position: absolute;
+    z-index: 2000; /* didesnis nei kortelių */
+}
+
+
+  /*  //////////Info_review//////////*/
+  .review{
+      width:80%;
+      min-height:70%;
+     background-color:rgb(128, 128, 128, .5);
+    
+      border-radius:15px;
+      display:flex;
+    flex-direction:column;
+      margin:auto;
+
+
+  }
+  .review h1{
+     
+     margin:0 auto;
+      color:red;
+  }
+  .review h2{
+      margin:0 auto;
+  }
+    .review textarea {
+        margin:0 auto;
+        border-style: none;
+        width:65%;
+       height:100%;
+    }
+
+.collage {
+   
+    padding: 5px;
+}
+.img {
+    display: inline-block;
+    border: 2px solid black;
+    width: 180px;
+    height: 180px;
+}
+
+.form-controle{
+    width:400px;
+}
+
+
+
+
+/*/////////////////////////////////*/
+
+.comment_like{
+   display:flex;
+}
+.comment_like li{
+    padding:2px;
+}
+.like{
+    margin-left:150px;
+}
+
+.nuotrauka {
+    width: 300px;
+    height: 300px;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.patinka_forma{
+   
+    display:flex;
+    margin:0 auto;
+}
+
+#patinka_dydis{
+    width:70px;
+    height:30px;
+}
+#like_mygtukas{
+    border:none;
+    background:none;
+}
+
+.patinka_forma div{
+    margin-top:5px;
+    margin-left:15px;
+}
+
+.patinka_forma input[type="submit"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: inherit;
+    color: inherit;
+    text-decoration: underline;
+}
+
+/*Nuotraukos padidinimo realizacija*/
+
+.nuotrauka {
+    width: 200px;
+    height: 200px;
+    cursor: zoom-in;
+}
+
+
+.priartinimas {
+    z-index: 2000;
+    cursor: zoom-out;
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Štai čia svarbiausia dalis: */
+    object-fit: contain !important; /* Neleidžia apkarpyti nuotraukos */
+    width: auto !important;
+    height: auto !important;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    border: 5px solid white;
+    border-radius: 8px;
+}
+
+    /* Papildomai: uždedam tamsų foną už nuotraukos, kad turinys netrukdytų */
+    .priartinimas::after {
+        content: "";
+        position: fixed;
+        top: -500%;
+        left: -500%;
+        width: 1000%;
+        height: 1000%; /* Užklojame viską */
+        background: rgba(255, 255, 255, 0.8); /* Arba rgba(0,0,0,0.8) jei nori tamsiai */
+        z-index: -1;
+    }
+/*-------------------------------------------*/
+
+/*Meniu navigacijos*/
+
+.lentele {
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    margin-left:30px;
+}
+
+.lentele_pavadinimas {
+    border-bottom: 2px solid grey;
+}
+
+    .lentele_pavadinimas img {
+        float: right;
+    }
+
+    .lentele_pavadinimas label {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 18pt;
+        color: brown;
+    }
+
+.lentele a {
+    text-decoration: none;
+    color: black;
+}
+
+   .kategorijos{
+       display:flex;
+      
+   }
+    /*--------------------------------------------------------*/
+    .info_meniu{
+        display:flex;
+        flex-direction:column;
+    }
+
+    #meniu_info{
+        margin:0 auto;
+       
+    }
+
+    .title{
+        text-align:center;
+        font-size:18px;
+        font-family:'Times New Roman';
+        color:black;
+    }
+
+
+
+   /* ///////////////////////////////////////
+    darbu registravimo Formos isvaizda*/
+.redagavimo_forma {
+    width: 80%;
+    margin: 0 auto;
+   background-color:rgb(128, 128, 128, .2);
+ 
+}
+    .redagavimo_forma div {
+        text-align: center;
+    }
+
+    .redagavimo_forma input {
+        margin: 0 auto;
+    }
+
+.reg_form_header {
+    min-height: 60px;
+    text-align: center;
+    font-size:24px;
+    border:none;
+    background-color:darkgray
+   
+}
+
+.pildymas {
+    width: 65%;
+    min-height: 100%;
+}
+
+textarea {
+   /* width: 100%;
+    min-height: 100px;*/
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+
+/*DropZone realizacija*/
+.drop-zone {
+    margin:0 auto;
+    width: 65%;
+    min-height: 150px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drop-text {
+    font-size: 18px;
+}
+
+.drop-zone:hover {
+    border-color: #777;
+}
+
+
+.atsisiuntimas{
+    width:50px;
+    height:60px;
+}
+
+
+.header_menu {
+    background-color: rgb(71, 67, 67);
+    min-height: 80px;
+    border-radius:3px;
+   
+}
+
+.mb-50{
+    margin-bottom:50px;
+}
+.mt-50{
+    margin-top:50px;
+}
+  
+
+.user-avatar{
+    display:flex;
+    width:50px;
+    height:50px;
+    color:white;
+    
+    justify-content:center;
+    align-items:center;
+
+}
+
+.image-container {
+    width: 400px;
+    height: 300px;
+  
+}
+.img-f {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media(max-width:700px) {
+    .image-container {
+        width: 300px;
+        height: 200px;
+    }
+
+    @media(max-width:400px) {
+        .image-container {
+            width: 200px;
+            height: 100px;
+        }
+    }
+
+
+
+
+
+    /* Tavo originalūs stiliai */
+    .hover-raso {
+        transition: all 0.2s ease-in-out;
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+        .hover-raso:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+            border-color: #212529 !important;
+        }
+
+            .hover-raso:hover .icon-box {
+                background-color: #444 !important;
+            }
+
+    /* Užtikrinam, kad komponento viduje esantys col-md-4 ar pan. veiktų teisingai šiame vaizde */
+    .row {
+        --bs-gutter-x: 1.5rem;
+    }
+
+
+

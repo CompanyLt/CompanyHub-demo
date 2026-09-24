@@ -1,0 +1,195 @@
+﻿@using Darbu_records.Models.Department
+@model List<DepartmentItem>
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h4 class="fw-bold mb-0 text-dark">Skyrių sąrašas</h4>
+            <small class="text-muted fw-bold text-uppercase" style="font-size: 0.7rem;">
+                Iš viso: @Model.Count
+            </small>
+        </div>
+
+        <div style="max-width:400px; width:100%;">
+            <div class="input-group shadow-sm border rounded">
+                <span class="input-group-text bg-white border-0">
+                    <i class="fa fa-search text-muted"></i>
+                </span>
+
+                <input type="text"
+                       id="deptSearch"
+                       class="form-control border-0 ps-0"
+                       placeholder="Ieškoti skyriaus..."
+                       style="box-shadow: none;">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row g-4" id="departmentContainer">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-xl-4 col-xxl-3 department-item">
+
+                <div class="card border-0 shadow-lg department-card h-100">
+
+                    <div class="card-body d-flex align-items-center p-4">
+
+                        <div class="rounded-circle overflow-hidden shadow-sm me-3"
+                             style="width:55px;height:55px;min-width:55px;">
+
+                            @if (item.recordFile != null &&
+                           !string.IsNullOrEmpty(item.recordFile.name) &&
+                           !string.IsNullOrEmpty(item.recordFile.directory))
+                            {
+                                <img src="/Access/GetFile?url=@item.recordFile.name&directory=@item.recordFile.directory"
+                                     class="w-100 h-100"
+                                     style="object-fit: cover;"
+                                     alt="Grupes nuotrauka">
+                            }
+                            else
+                            {
+                                <img src="/Images/departmentAvatar.png"
+                                     class="w-100 h-100"
+                                     style="object-fit: cover;"
+                                     alt="Grupes nuotrauka">
+                            }
+
+                        </div>
+
+                        <div class="overflow-hidden">
+
+                            <h6 class="fw-bold mb-1 text-dark text-truncate">
+                                @item.Name
+                            </h6>
+
+                            <small class="text-muted d-block text-truncate">
+                                Skyriaus vadovas
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-footer bg-light d-flex justify-content-between align-items-center px-4 py-3 border-0">
+
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase"
+                              style="font-size:0.6rem;">
+                            Skyrius
+                        </span>
+
+
+                        <div class="dropdown">
+
+                            <button class="btn btn-sm btn-white border shadow-sm dropdown-toggle fw-bold text-uppercase"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style="font-size:0.65rem;">
+
+                                Veiksmai
+
+                            </button>
+
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                                <li>
+                                    <a class="dropdown-item py-2" href="#">
+                                        <i class="fa fa-info-circle me-2 text-primary"></i>
+                                        Profilis
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item py-2" href="#">
+                                        <i class="fa fa-pencil me-2 text-success"></i>
+                                        Redaguoti
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item py-2 text-danger" href="#">
+                                        <i class="fa fa-trash me-2"></i>
+                                        Trinti
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .department-card {
+        transition: all 0.25s ease-in-out;
+        position: relative;
+    }
+
+        .department-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+        }
+
+        /* IDENTIŠKAS SPRENDIMAS KAIP WORKER */
+
+        .department-card:has(.dropdown-toggle.show) {
+            z-index: 9999 !important;
+        }
+
+        .department-card:focus-within {
+            z-index: 9999 !important;
+        }
+
+    .btn-white {
+        background-color: #fff;
+    }
+
+    .dropdown-menu {
+        z-index: 10000 !important;
+        border-radius: 10px;
+    }
+
+</style>
+
+
+<script>
+
+    document.getElementById('deptSearch')?.addEventListener('input', function (e) {
+
+        const text = e.target.value.toLowerCase();
+
+        document.querySelectorAll('.department-item').forEach(item => {
+
+            const name = item.querySelector('h6').innerText.toLowerCase();
+
+            if (name.includes(text)) {
+                item.style.setProperty('display', 'block', 'important');
+            } else {
+                item.style.setProperty('display', 'none', 'important');
+            }
+
+        });
+
+    });
+
+</script>

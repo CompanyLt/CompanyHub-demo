@@ -1,0 +1,20 @@
+﻿@using Darbu_records.Formos
+@model InstructionForm
+
+
+
+<form class="redagavimo_forma" asp-controller="Instruction" asp-action="InstructionUpdateExecute" method="post" asp-route-iraso_id="@Model.iraso_id">
+    <div>
+        <label>Instrukcijos pavadinimas</label><br>
+        <input class="form-controle" asp-for="pavadinimas" value="@Model.pavadinimas" />
+
+    </div>
+
+    <div>
+        <label>Instrukcijos aprasymas</label><br>
+        <textarea class="pildymas" id="TextAreaResize" asp-for="aprasymas" type="text" rows="5" cols="30">@Model.aprasymas</textarea>
+    </div>
+ 
+
+    <input type="submit" value="patvirtinti" />
+</form>

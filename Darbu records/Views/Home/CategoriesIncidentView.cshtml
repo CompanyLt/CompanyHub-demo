@@ -1,0 +1,20 @@
+﻿
+@model List<Category> 
+
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+				<a asp-controller="Incident" asp-action="IncidentView" asp-route-category="@category.Id" class="stretched-link text-decoration-none">
+                                      
+                    <img src="~/Images/categories/@category.Image" class="card-img-top" alt="@category.Image" />
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-title">@category.Name</h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>

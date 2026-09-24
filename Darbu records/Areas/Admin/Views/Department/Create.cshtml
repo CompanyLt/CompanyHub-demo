@@ -1,0 +1,116 @@
+﻿@using Darbu_records.Models.Department
+@model DepartmentTaskForm
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Antraštė -->
+                    <h4 class="fw-bold mb-3">
+                        <i class="fa fa-building me-2"></i>Sukurti naują skyrių
+                    </h4>
+                    <p class="text-muted mb-4">Konfigūruokite skyriaus nustatymus ir matomumą</p>
+
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="row g-4">
+
+                            <!-- Skyriaus pavadinimas + nuotrauka blokas -->
+                            <div class="col-12 p-3 border rounded-3 mb-4 bg-light">
+                                <div class="d-flex align-items-center gap-3 flex-wrap">
+                                    <div class="flex-grow-1">
+                                        <label class="form-label fw-bold small text-uppercase">Skyriaus pavadinimas</label>
+                                        <input asp-for="name"
+                                               class="form-control form-control-lg @(ViewData.ModelState["name"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                                               placeholder="Įveskite skyriaus pavadinimą..." required />
+                                        <span asp-validation-for="name" class="text-danger"></span>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img id="imagePreview" src="~/Images/default.png"
+                                             class="rounded-circle border shadow-sm mb-2"
+                                             style="width: 90px; height: 90px; object-fit: cover;"
+                                             alt="Preview">
+                                        <input type="file" asp-for="formImage" class="form-control form-control-sm" id="imageInput" accept="image/*" />
+                                        <small class="text-muted mt-1">Kvadratinė nuotrauka, iki 2MB</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigacijos meniu blokas -->
+                            <div class="col-12 p-3 border rounded-3 mb-4 bg-light">
+                                <h6 class="fw-bold mb-3"><i class="fa fa-compass me-2 text-primary"></i>Navigacijos meniu</h6>
+                                <p class="text-muted small mb-3">Pažymėkite punktus, kurie bus matomi viršuje:</p>
+                                <div class="row g-2">
+                                    @for (int i = 0; i < Model.navigationActionCollection.Count; i++)
+                                    {
+                                        <div class="col-md-6 col-xl-4">
+                                            <div class="selection-card p-3 border rounded-3 shadow-sm d-flex align-items-center">
+                                                <div class="form-check m-0">
+                                                    <input type="hidden" asp-for="@Model.navigationActionCollection[i].Id" />
+                                                    <input class="form-check-input custom-checkbox" type="checkbox" asp-for="@Model.navigationActionCollection[i].isSelected" id="nav_@i">
+                                                    <label class="form-check-label ms-2 fw-semibold" for="nav_@i">
+                                                        @Model.navigationActionCollection[i].Name
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- Veiksmai -->
+                            <div class="col-12 d-flex gap-2">
+                                <button type="submit" class="btn btn-dark px-5 fw-bold text-uppercase">Išsaugoti skyrių</button>
+                                <a asp-action="Index" class="btn btn-outline-secondary px-4 fw-bold text-uppercase">Atšaukti</a>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Nuotraukos preview
+    document.getElementById('imageInput').onchange = evt => {
+        const [file] = document.getElementById('imageInput').files;
+        if (file) {
+            document.getElementById('imagePreview').src = URL.createObjectURL(file);
+        }
+    }
+</script>
+
+<style>
+    /* Kortelių stilius */
+    .selection-card {
+        transition: all 0.2s ease;
+        background-color: #fcfcfc;
+        cursor: pointer;
+    }
+
+        .selection-card:hover {
+            border-color: #0d6efd !important;
+            background-color: #f8fbff;
+        }
+
+    /* Padidinta varnelė */
+    .custom-checkbox {
+        width: 1.3rem;
+        height: 1.3rem;
+        cursor: pointer;
+    }
+
+    .form-check-label {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .form-control:focus {
+        border-color: #212529;
+        box-shadow: none;
+    }
+</style>

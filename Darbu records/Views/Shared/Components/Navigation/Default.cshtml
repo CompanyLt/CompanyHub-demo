@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Darbu_records.Singleton.AppInfo 
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    @foreach (var action in Model.actionNavigationItems)
+    {
+        <li class="nav-item dropdown">
+            @* Pridėjau fw-bold ir hover efektą *@
+            <a class="nav-link dropdown-toggle fw-semibold px-3" href="#" id="navbarDropdown_@action.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @action.Name
+            </a>
+
+            @* Meniu padarome tamsų (dropdown-menu-dark), kad derėtų prie juodo headerio *@
+            <ul class="dropdown-menu dropdown-menu-dark shadow-lg border-secondary mt-2" aria-labelledby="navbarDropdown_@action.Id">
+                @foreach (var navigation in Model.navigationItems.Where(c => c.AssignId == action.Id))
+                {
+                    <li>
+                        <a class="dropdown-item py-2" asp-controller="@navigation.AspController" asp-action="@navigation.AspAction" asp-route-department_access=@navigation.DepartmentAccess>
+
+                            <i class="fa fa-angle-right me-2 opacity-50"></i>@navigation.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

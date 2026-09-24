@@ -1,0 +1,26 @@
+﻿@using Darbu_records.Formos
+
+@model IncidentForm
+
+
+
+<form class="redagavimo_forma" asp-controller="Incident" asp-action="IncidentUpdateExecute" asp-route-iraso_id="@Model.iraso_id" method="post">
+    <div>
+        <label>Gedimo pavadinimas</label><br>
+        <input class="form-controle" asp-for="pavadinimas" value="@Model.pavadinimas" />
+
+    </div>
+
+    <div>
+        <label>Aprasykite gedima:</label><br>
+        <textarea class="pildymas" asp-for="aprasymas" type="text" rows="5" cols="30">@Model.aprasymas</textarea>
+    </div>
+
+    <div>
+        <label>Aprasykite sprendima:</label><br>
+        <textarea class="pildymas" id="textarea" asp-for="sprendimas" type="text" rows="5" cols="30">@Model.sprendimas</textarea>
+    </div>
+
+
+    <input type="submit" value="patvirtinti" />
+</form>

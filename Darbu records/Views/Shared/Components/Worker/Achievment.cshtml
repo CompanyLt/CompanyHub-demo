@@ -1,0 +1,35 @@
+﻿@model Darbu_records.Models.Worker
+
+@foreach (var achievement in @Model.achievments)
+{
+    var modalId = "modal" + achievement.Id;
+    var modalLabelId = "modalLabel" + achievement.Id;
+
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-2 text-center">
+        <div class="card border-0 shadow-sm h-100 p-2" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#@modalId">
+            <img src="~/achievment/images/@achievement.Image" class="card-img-top img-fluid" alt="@achievement.Name"
+                 style="width:80px; height:80px; object-fit:cover; margin:auto;">
+            <div class="card-body p-1">
+                <small>@achievement.Name</small>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="@modalLabelId" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="@modalLabelId">@achievement.Name</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Uždaryti"></button>
+                    </div>
+                    <div class="modal-body">
+                        @achievement.Description
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

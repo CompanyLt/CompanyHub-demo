@@ -1,0 +1,120 @@
+﻿@using Darbu_records.Models.Topic
+@model TopicForm;
+
+
+@* 1. TEMOS BLOKAS (Topic) *@
+<div class="card shadow-sm border-0 rounded-3 mb-4 overflow-hidden">
+    @* HEADERIS *@
+    <div class="bg-dark text-white p-4 text-center">
+        <h2 class="fw-bold m-0 text-uppercase" style="letter-spacing: 2px;">@Model.title</h2>
+    </div>
+
+    @* DESCRIPTION ZONA *@
+    <div class="p-4 text-center bg-white">
+        <p class="lead mb-0 text-secondary fw-bold">@Model.description</p>
+    </div>
+
+
+
+    <div class="row g-3 mb-4">
+        @if (Model.fileForm.filesCollection.Any())
+        {
+           
+                    @foreach (var file in Model.fileForm.filesCollection)
+                    {
+
+
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                            <div class="border rounded-3 p-3 text-center bg-light h-100 hover-raso shadow-sm">
+                                <i class="fa fa-file-pdf-o text-danger fs-1 mb-2"></i>
+                                <div class="fw-bold text-truncate small">@file.name</div>
+                                <div class="text-muted mt-1" style="font-size: 0.7rem;">1.2 MB</div>
+                                 <a href="/Access/GetFile?url=@file.name&directory=@file.directory" class="btn btn-sm btn-dark w-100 mt-2">Atsisiųsti</a>
+                            </div>
+                        </div>
+                      
+                    }           
+        }
+
+        @if (Model.fileForm.photosCollection.Any())
+        {
+           
+                    @foreach (var p in Model.fileForm.photosCollection)
+                    {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="rounded shadow-sm overflow-hidden bg-light" style="height: 150px;">
+                        <img src="/Access/GetFile?url=@p.name&directory=@p.directory"
+                                 class="img-fluid w-100 h-100"
+                                 style="object-fit: cover; cursor: pointer;"
+                                 alt="Nuotrauka"
+                                 onclick="priartinimas(this)">
+                        </div>
+                    </div>
+                    }
+              
+        }
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+ 
+
+@* 2. DISKUSIJŲ BLOKAS (Atskirtas tarpeliu mb-4) *@
+<div class="card shadow-lg border-0 rounded-3 bg-white">
+    <div class="card-body p-4 p-md-5">
+        <div class="d-flex align-items-center mb-4">
+            <h6 class="text-uppercase fw-bold text-muted small m-0">
+                <i class="fa fa-comments me-2 text-primary"></i> Diskusijos eiga
+            </h6>
+            <div class="flex-grow-1 ms-3 border-bottom opacity-25"></div>
+        </div>
+
+        @* UNIVERSALUS KOMENTARO BLOKAS *@
+        @await Component.InvokeAsync("Comment", new { tableName = "DepartmentBoardComment", topic_id = Model.noteId})
+
+
+        @await Html.PartialAsync("~/Views/Shared/CommentBlock.cshtml", new Comment { id = Model.noteId, title = Model.title })
+        @* NAVIGACIJA *@
+        <div class="text-center mt-5 pt-4 border-top">
+            <a href="javascript:history.back()" class="btn btn-outline-dark px-5 fw-bold text-uppercase">
+                <i class="fa fa-arrow-left me-2"></i> Grįžti į sąrašą
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    /* Išlaikome tavo hover-raso stilių kortelėms */
+    .hover-raso {
+        transition: all 0.2s ease-in-out;
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+        .hover-raso:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+            border-color: #212529 !important;
+        }
+
+    /* Pagerintas skaitomumas platesnėje zonoje */
+    .container-fluid {
+        max-width: 1600px;
+    }
+
+    .border-2 {
+        border-width: 2px !important;
+    }
+</style>

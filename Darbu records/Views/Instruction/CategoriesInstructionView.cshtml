@@ -1,0 +1,166 @@
+﻿@model List<Category> 
+
+@await Html.PartialAsync("~/Views/Shared/TopicSearch.cshtml")
+<div class="row g-4">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4 col-sm-6 col-12 category-card" data-name="@category.Name.ToLower()">
+            @* Pridėta position-relative čia užtikrina, kad stretched-link veiktų visai kortelei *@
+            <div class="card h-100 border-0 shadow-lg hover-raso-clean rounded-3 overflow-hidden position-relative">
+
+                @* 1. VIRŠUTINĖ DALIS (NUOTRAUKA) *@
+                <div class="position-relative overflow-hidden" style="height: 200px;">
+                    @if (category.recordFile != null &&
+                   !string.IsNullOrEmpty(category.recordFile.name) &&
+                   !string.IsNullOrEmpty(category.recordFile.directory))
+                    {                      
+                        <img src="/Access/GetFile?url=@category.recordFile.name&directory=@category.recordFile.directory"
+                             class="card-img-top w-100 h-100"
+                             alt="@category.Name"
+                             style="object-fit: cover; transition: transform 0.5s ease;">
+                    }
+                    else
+                    {
+                        <img src="~/Images/categories/@category.Image"
+                             class="card-img-top w-100 h-100"
+                             alt="@category.Name"
+                             style="object-fit: cover; transition: transform 0.5s ease;"
+                             onerror="this.onerror=null;this.src='/Images/default.png';">
+                    }
+
+                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark" style="height: 4px;"></div>
+                </div>
+
+                @* 2. VIDURINĖ DALIS (PAVADINIMAS) *@
+                <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center pb-4">
+                    <h5 class="card-title fw-bold text-dark text-uppercase m-0 text-center" style="letter-spacing: 2px;">
+                        @category.Name
+                    </h5>
+
+                    <div class="mt-3 pt-3 border-top w-50 text-center mb-3">
+                        <span class="small text-muted text-uppercase" style="font-size: 0.65rem;">Peržiūrėti</span>
+                    </div>
+
+                    @* PAGRINDINIS LINKAS: stretched-link dabar dengia viską, kas neturi savo z-index *@
+                    <a asp-controller="Instruction"
+                       asp-action="InstructionView"
+                       asp-route-id="@category.Id"
+                       asp-route-department_access="@category.DepartmentAccess"
+                       class="stretched-link">
+                    </a>
+                </div>
+
+                @* 3. APATINĖ DALIS: z-index: 5 iškelia šį bloką VIRŠ stretched-link, todėl mygtukas paspaudžiamas *@
+                <div class="bg-light border-top py-2 text-center position-relative share-footer" style="z-index: 5;">
+                    <button class="btn btn-share-link text-decoration-none text-muted fw-bold text-uppercase p-0 w-100 shadow-none"
+                            style="font-size: 0.65rem; letter-spacing: 1px; height: 30px;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#shareModal-@category.Id">
+                        <i class="fa fa-share-alt me-1"></i> Dalintis kategorija
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        @* MODALAS (Toks pat kaip grupėse) *@
+        <div class="modal fade" id="shareModal-@category.Id" tabindex="-1" aria-hidden="true" style="z-index: 1060;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg rounded-3 border-top border-dark border-5">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold text-uppercase" style="letter-spacing: 1px;">Dalintis: @category.Name</h5>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4 text-center">
+                        <p class="text-muted mb-4 small text-uppercase fw-bold">Kam siųsti šią kategoriją?</p>
+
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <a asp-controller="ShareDesk"
+                                   asp-action="InstructionCategoryWithDepartment"
+                                   asp-route-id="@category.Id"
+                                   class="btn btn-light border w-100 py-4 hover-raso-side shadow-sm d-flex flex-column align-items-center text-decoration-none h-100">
+                                    <i class="fa fa-users fa-2x mb-2 text-primary"></i>
+                                    <span class="fw-bold text-uppercase small text-dark">Skyriui</span>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a asp-controller="#"
+                                   asp-action="#"
+                                   asp-route-categoryId="#"
+                                   class="btn btn-light border w-100 py-4 hover-raso-side shadow-sm d-flex flex-column align-items-center text-decoration-none h-100">
+                                    <i class="fa fa-user fa-2x mb-2 text-success"></i>
+                                    <span class="fw-bold text-uppercase small text-dark">Žmogui</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0 justify-content-center">
+                        <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none text-uppercase fw-bold shadow-none" data-bs-dismiss="modal">Atšaukti</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@* MYGTUKAS APAČIOJE *@
+<div class="text-center mt-5 pt-3">
+    <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm text-uppercase fw-bold border-0">
+        <i class="fa fa-arrow-left me-2"></i> Grįžti į sąrašą
+    </a>
+</div>
+
+<style>
+    /* Išlaikome tavo hover efektus */
+    .hover-raso-clean {
+        transition: all 0.3s ease;
+        background-color: #ffffff;
+    }
+
+    .hover-raso-clean:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+    }
+
+    .hover-raso-clean:hover img {
+        transform: scale(1.08);
+    }
+
+    /* FIX: Mėlyno rėmelio pašalinimas ir hover efektai mygtukui */
+    .btn-share-link {
+        background: none;
+        border: none;
+        outline: none !important;
+        box-shadow: none !important;
+        transition: all 0.2s ease;
+    }
+
+    .btn-share-link:hover {
+        color: #000 !important;
+    }
+
+    .btn-share-link:active {
+        transform: scale(0.96);
+    }
+
+    .share-footer {
+        transition: background-color 0.3s ease;
+    }
+
+    .hover-raso-clean:hover .share-footer {
+        background-color: #f1f1f1 !important;
+    }
+
+    /* Modalo mygtukų hover (iš tavo stiliaus) */
+    .hover-raso-side {
+        transition: all 0.25s ease;
+        border-radius: 12px;
+    }
+
+    .hover-raso-side:hover {
+        background-color: #f8f9fa !important;
+        transform: translateY(-3px);
+        border-color: #212529 !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+    }
+</style>

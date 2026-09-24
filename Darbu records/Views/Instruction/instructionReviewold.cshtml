@@ -1,0 +1,70 @@
+﻿@using Darbu_records.Formos;
+@model InstructionForm;
+
+
+
+
+
+
+
+<div class="container my-4">
+    <div class="card shadow-lg">
+        <div class="card-body">
+
+            <!-- Note INFO Header -->
+            <h3 class="text-primary text-center">Note INFO</h3>
+            <hr class="border-primary">
+
+            <!-- Like mygtukas -->
+            <div class="d-flex justify-content-center align-items-center mb-3">
+                <form class="d-flex align-items-center" asp-controller="Home" asp-action="Patinka_pridejimas"
+                      asp-route-pavadinimas="@Model.pavadinimas"
+                      asp-route-aprasymas="@Model.aprasymas"
+                      asp-route-id="@Model.iraso_id"
+                      asp-route-patinka="@Model.patinka">
+                    <button type="submit" class="btn btn-light p-0 border-0">
+                        <img src="/like.jpg" alt="patinka" style="width:40px; height:40px;">
+                    </button>
+                    <span class="ms-2 fs-5">: @(Model.patinka - 1)</span>
+                </form>
+            </div>
+
+            <!-- Pavadinimas ir aprasymas -->
+            <h5 class="text-center">@Model.pavadinimas</h5>
+            <hr class="border-secondary">
+            <p class="text-center">@Model.aprasymas</p>
+
+            <!-- Nuotraukos Section -->
+            @* @if (Model.photos.Any())
+            {
+                <h4 class="mt-4 text-info text-center">Nuotraukos</h4>
+                <hr class="border-info">
+                <div class="row g-3 justify-content-center">
+                    @foreach (var p in Model.photos)
+                    {
+                        <div class="col-6 col-md-3 d-flex justify-content-center">
+                            <img src="/Access/GetFile?url=@p.name&directory=@p.directory"
+                                 class="img-fluid rounded shadow-sm"
+                                 style="cursor:pointer;"
+                                 alt="Nuotrauka"
+                                 onclick="priartinimas(this)">
+                        </div>
+                    }
+                </div>
+            } *@
+
+            <!-- Failai Section -->
+            @if (!string.IsNullOrEmpty(Model.file_name))
+            {
+                <h4 class="mt-4 text-warning text-center">Failai</h4>
+                <hr class="border-warning">
+                <div class="text-center mb-3">
+                    <a href="/Access/GetFile?url=@Model.file_name&directory=@ViewData["tempDirectory"]" class="btn btn-outline-primary" download>
+                        <i class="fa fa-download"></i> Atsisiųsti failą
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

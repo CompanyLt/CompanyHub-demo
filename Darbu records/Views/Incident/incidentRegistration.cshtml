@@ -1,0 +1,115 @@
+﻿@using Darbu_records.Formos
+@using Darbu_records.DAL
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Gedimo registravimas";
+}
+@model IncidentForm
+@inject NavigationLoader AppInfoService
+
+<form class="redagavimo_forma" asp-controller="Incident" asp-action="IncidentAdd" method="post" enctype="multipart/form-data">
+    <header class="reg_form_header">
+        Gedimo registravimo forma
+    </header>
+    <div>
+        <label asp-for="pavadinimas"></label><br />
+        <input  asp-for ="pavadinimas" /><br />
+        <span asp-validation-for="pavadinimas"></span>
+       
+    </div>
+
+   @*  GRUPES *@
+    <div>
+        <label>Grupe</label><br />
+        <select  id="groupSelect">
+            @foreach (var group in AppInfoService.Get().groups)
+            {
+                <option value="@group.Id">@group.Name</option>
+            }
+        </select>
+    </div>
+    @*  KATEGORIJOS *@
+    <div>
+        <label>Kategorija</label><br />
+        <select asp-for="categoryId" id="categorySelect">
+            @foreach (var category in AppInfoService.Get().categories)
+            {
+                <!-- Čia sugeneruojam VISUS, tik pridedam groupId -->
+                <option value="@category.Id" data-group="@category.GroupId">
+                    @category.Name
+                </option>
+            }
+        </select>
+    </div>
+
+
+    <script>
+        const groupSelect = document.getElementById("groupSelect");
+        const categorySelect = document.getElementById("categorySelect");
+
+        function filterCategories(groupId) {
+            for (let option of categorySelect.options) {
+                option.hidden = (option.dataset.group !== groupId);
+            }
+            // pasirinkti pirma matoma
+            let visible = Array.from(categorySelect.options).find(o => !o.hidden);
+            if (visible) categorySelect.value = visible.value;
+        }
+
+        // Kai keiciasi group
+        groupSelect.addEventListener("change", function () {
+            filterCategories(this.value);
+        });
+
+        // Funkcijos iskvietimas
+        filterCategories(groupSelect.value);
+    </script>
+  
+    <div>
+        <label asp-for="aprasymas"></label><br />
+       
+        <textarea class ="pildymas" asp-for="aprasymas" type="text" rows="5" cols="30"></textarea><br />
+        <span asp-validation-for="aprasymas"></span>
+    </div>
+
+
+
+    <div>
+        <label asp-for="sprendimas"></label><br />
+       
+        <textarea class="pildymas" asp-for="sprendimas" type="text" rows="5" cols="30"></textarea><br />
+        <span asp-validation-for="sprendimas"></span>
+    </div>
+
+@*     <div>
+      
+        <input type="file" asp-for="failas" accept="image/jpeg,image/bmp"  />
+        <input type="submit" name="patvirtinti" value="Patvirtinti" />
+    </div> *@
+    <label class="d-flex justify-content-center text-center">Nuotraukos ikelimas:</label>
+    <div class="drop-zone" id="drop-zone">
+
+      
+        <p class="drop-text">Tempkite paveikslėlius čia arba paspauskite, kad įkeltumėte.</p>
+         
+       
+    </div>
+   @*  Idejus i  div vidu gaunasi taip, kad javascriptas sunaikina input lauka *@
+    <input type="file"  accept="image/*" id="photosInput" style="display: none;" multiple name="images">
+   @*  /// *@
+    <label class="d-flex justify-content-center">Failo ikelimas:</label>
+    <div class="drop-zone" id="drop-zone-file">
+
+
+        <p class="drop-text">Tempkite faila čia arba paspauskite, kad įkeltumėte.</p>
+       
+
+    </div>
+    <input type="file"  id="fileInput" style="display: none;" name="file">
+    <input class="d-flex justify-content-center" type="submit" name="patvirtinti" value="Patvirtinti" />
+
+
+</form>
+

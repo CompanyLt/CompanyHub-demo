@@ -1,0 +1,68 @@
+﻿
+@model List<Category> 
+
+
+<div class="row g-4">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="card h-100 border-0 shadow-lg hover-raso-clean rounded-3 overflow-hidden position-relative">
+
+                <div class="position-relative overflow-hidden" style="height: 200px;">
+                    <img src="~/Images/categories/@category.Image"
+                         class="card-img-top w-100 h-100"
+                         alt="@category.Name"
+                         style="object-fit: cover; transition: transform 0.5s ease;"
+                         onerror="this.onerror=null;this.src='/Images/default.png';">
+
+                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark" style="height: 4px;"></div>
+                </div>
+
+                <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center">
+
+                    <h5 class="card-title fw-bold text-dark text-uppercase m-0 text-center" style="letter-spacing: 2px;">
+                        @category.Name
+                    </h5>
+
+                    <div class="mt-3 pt-3 border-top w-50 text-center">
+                        <span class="small text-muted text-uppercase" style="font-size: 0.65rem;">Peržiūrėti</span>
+                    </div>
+                   
+                    <a asp-controller="Note"
+                       asp-action="NoteView"
+                       asp-route-category="@category.Id"
+                       asp-route-department_access="@category.DepartmentAccess"
+                       class="stretched-link">
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="text-center mt-5 pt-3">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm text-uppercase fw-bold border-0">
+            <i class="fa fa-arrow-left me-2"></i> Grįžti į sąrašą
+        </a>
+    </div>
+</div>
+<style>
+    /* Naudojame tą patį stilių kaip ir grupėse */
+    .hover-raso-clean {
+        transition: all 0.3s ease;
+        background-color: #ffffff;
+    }
+
+        .hover-raso-clean:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+            background-color: #fcfcfc;
+        }
+
+            /* Nuotraukos priartinimas užvedus pelę */
+            .hover-raso-clean:hover img {
+                transform: scale(1.08);
+            }
+
+            .hover-raso-clean:hover .card-title {
+                color: #000 !important;
+            }
+</style>

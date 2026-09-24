@@ -1,0 +1,49 @@
+realizuosiu instrukciju pateikime, realizuota notes vertinimo sistema
+
+prideta darbu perziura sveciui
+
+
+
+
+
+1. Tikslas padaryti darbo organizavimo programa.
+
+funkcionalumas:
+ 1. motivacine logika, kiekvienas vartotojas tures savo nasumo progresa ir apdovanojimus.
+	turi buti zaidimo forma su apdovanojimais.
+
+ 2. turi buti visa darbu organizavimo logika.
+
+ 3. Gedimu, instrukciju registras.
+
+
+
+prog kalba.
+Programavimui bus naudojama html,css,sql,.net mvc, javascript.
+
+
+
+
+1.5
+pridejau registravimo formai funkcionaluma kuris leis prideti multi failus nuotraukas ir 1 faila atsisiuntimui
+
+
+
+
+1.7.
+Perdariau html koda
+
+
+1.8
+Isskaidytas Sql_Action i IncidentService, InstructionService
+
+1.9
+prideta group-category ir suristi irasai.pridetas kategoriju inicializavimo metodas
+
+2.0 prideta instrukciju kategorijos, duombazeje taip pat pridetos lenteles grupavimui
+
+2.3 dar karta perdaryta incidentu ir instrkciju valdymo logika. si karta pasinaudota interface kompozicija taip atskiriant priklausomybes.
+
+
+
+2.4 perkeliau incidentReview, instructionReview

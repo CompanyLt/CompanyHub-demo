@@ -1,0 +1,130 @@
+﻿@using Darbu_records.Interfaces
+@using Darbu_records.Models.User
+@model CreateUserTaskForm
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Antraštė -->
+                    <h4 class="fw-bold mb-3">
+                        <i class="fa fa-user-plus me-2"></i>Sukurti naują darbuotoją
+                    </h4>
+                    <p class="text-muted mb-4">Užpildykite darbuotojo informaciją ir priskirkite skyrių bei rolę</p>
+
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="row g-4">
+
+                            <!-- Vardas ir pavardė -->
+                            <div class="col-12 p-3 border rounded-3 mb-4 bg-light">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small text-uppercase">Vardas</label>
+                                        <input asp-for="name" class="form-control form-control-lg" required />
+                                        <span asp-validation-for="name" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small text-uppercase">Pavardė</label>
+                                        <input asp-for="surname" class="form-control form-control-lg" required />
+                                        <span asp-validation-for="surname" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pareigos ir skyrius -->
+                            <div class="col-12 p-3 border rounded-3 mb-4 bg-light">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small text-uppercase">Pareigos</label>
+                                        <input asp-for="jobTitle" class="form-control form-control-lg" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small text-uppercase">Skyrius</label>
+                                        <select asp-for="departmentId" class="form-select form-select-lg">
+                                            <option value="0">Pasirinkite...</option>
+                                            @foreach (var n in Model.departmentCollection)
+                                            {
+                                                <option value="@n.Id">@n.Name</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="departmentId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rolė -->
+                            <div class="col-12 p-3 border rounded-3 mb-4 bg-light">
+                                <label class="form-label fw-bold small text-uppercase">Rolė</label>
+                                <select asp-for="role_id" class="form-select form-select-lg">
+                                    <option value="0">Pasirinkite...</option>
+                                    <option value="1">Vartotojas</option>
+                                    <option value="2">Administratorius</option>
+                                    <option value="3">Klientas</option>
+                                    <option value="4">Moderatorius</option>
+                                </select>
+                                <span asp-validation-for="role_id" class="text-danger"></span>
+                            </div>
+
+                            <!-- Profilio nuotrauka -->
+                            <div class="col-12 p-3 border rounded-3 mb-4 bg-light">
+                                <label class="form-label fw-bold small text-uppercase">Profilio nuotrauka</label>
+                                <div class="d-flex align-items-center gap-3 flex-wrap">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img id="imagePreview" src="~/Images/default.png"
+                                             class="rounded-circle border shadow-sm mb-2"
+                                             style="width: 90px; height: 90px; object-fit: cover;" alt="Preview">
+                                        <input type="file" asp-for="formImage" class="form-control form-control-sm" id="imageInput" accept="image/*" />
+                                        <small class="text-muted mt-1">Kvadratinė nuotrauka, iki 2MB</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Veiksmai -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-dark px-5 fw-bold text-uppercase">Sukurti</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4 fw-bold text-uppercase">Atšaukti</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Nuotraukos preview
+    document.getElementById('imageInput').onchange = evt => {
+        const [file] = document.getElementById('imageInput').files;
+        if (file) {
+            document.getElementById('imagePreview').src = URL.createObjectURL(file);
+        }
+    }
+</script>
+
+<style>
+    .form-control:focus, .form-select:focus {
+        border-color: #212529;
+        box-shadow: none;
+    }
+
+    .form-check-label {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .selection-card {
+        transition: all 0.2s ease;
+        background-color: #fcfcfc;
+        cursor: pointer;
+    }
+
+        .selection-card:hover {
+            border-color: #0d6efd !important;
+            background-color: #f8fbff;
+        }
+</style>

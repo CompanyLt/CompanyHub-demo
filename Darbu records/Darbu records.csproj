@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <Version>1.2.4.0</Version>
+    <RootNamespace>Darbu_records</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Data" Version="23.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageReference Include="Mvc2Futures" Version="2.0.50217" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Moderator\Controllers\" />
+    <Folder Include="Areas\Moderator\Views\" />
+    <Folder Include="FileManagement\" />
+    <Folder Include="Interfaces\NewFolder\" />
+    <Folder Include="Views\Action\" />
+    <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\image_base\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,113 @@
+﻿@model Darbu_records.Models.ShareDesk.ShareDesk
+
+@foreach (var shareItem in Model.Items)
+{
+    <div class="col-md-4 col-12 mb-4">
+        @* Pridedame 'position-relative' kortelei, kad 'stretched-link' žinotų savo ribas *@
+        <div class="card h-100 border-0 shadow-sm hover-sharedesk rounded-3 overflow-hidden position-relative">
+
+            <div class="position-relative bg-secondary d-flex align-items-center justify-content-center" style="height: 120px;">
+                <i class="fa fa-file-pdf-o text-white opacity-25 position-absolute" style="font-size: 5rem; right: -10px; bottom: -10px;"></i>
+                <i class="fa fa-cloud-download text-white" style="font-size: 3rem; z-index: 1;"></i>
+
+                <div class="position-absolute top-0 start-0 m-2">
+                    <span class="badge bg-dark text-uppercase" style="font-size: 0.65rem;">@shareItem.Name</span>
+                </div>
+            </div>
+
+            <div class="card-body p-3 text-center">
+                <h6 class="fw-bold mb-1">@shareItem.Title</h6>
+                <p class="text-muted small mb-3">@shareItem.Description</p>
+
+                @{
+                    var deleteModalId = "deleteModal" + shareItem.Id;
+                }
+                @* 2. ATSAUKTI: 'position-relative' ir 'z-index' iškelia jį VIRŠ peržiūros sluoksnio *@
+
+                <button type="button"
+                        class="btn btn-outline-danger btn-sm w-100 fw-bold text-uppercase"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        data-id="@shareItem.Id"
+                        data-name="@shareItem.Name">
+                    Atšaukti
+                </button>
+
+                @* Modalinis langas lieka toks pat *@
+                @* <div class="modal fade" id="@deleteModalId" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow-lg rounded-3">
+                            <div class="modal-header bg-dark text-white border-0">
+                                <h5 class="modal-title fw-bold text-uppercase" style="letter-spacing: 1px;">Patvirtinkite trynimą</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4 text-center">
+                                <i class="fa fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                                <h5 class="fw-bold mb-2 text-dark">Ar tikrai norite ištrinti?</h5>
+                                <p class="text-muted mb-0">Ruošiatės pašalinti instrukciją:</p>
+                                <p class="fw-bold text-dark mt-2">@shareItem.Name</p>
+                                <p class="fw-bold text-dark mt-2">@shareItem.Title</p>
+                            </div>
+                            <div class="modal-footer border-0 pb-4 justify-content-center">
+                                <button type="button" class="btn btn-outline-secondary px-4 fw-bold text-uppercase" data-bs-dismiss="modal" style="font-size: 0.8rem;">Atšaukti</button>
+
+                               
+                                <form asp-controller="ShareDesk" asp-action="DeleteSharedTopic"
+                                      asp-route-id="@shareItem.Id"                            
+                                      method="post" class="m-0">
+                                    <button type="submit" class="btn btn-danger px-4 fw-bold text-uppercase" style="font-size: 0.8rem;">Taip, ištrinti</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> *@
+            </div>
+
+        </div>
+    </div>
+}
+
+
+@* Universalus modalas *@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-3">
+            <div class="modal-header bg-dark text-white border-0">
+                <h5 class="modal-title fw-bold text-uppercase">Patvirtinkite trynimą</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <i class="fa fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                <h5>Ar tikrai norite ištrinti?</h5>
+                <p id="modalItemName" class="fw-bold text-dark mt-2"></p>
+            </div>
+            <div class="modal-footer border-0 pb-4 justify-content-center">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Atšaukti</button>
+
+                @* Šią formą modifikuosime per JS *@
+                <form id="deleteForm" asp-controller="ShareDesk" asp-action="DeleteSharedTopic" method="post">
+                    <input type="hidden" name="id" id="deleteId" />
+                    <button type="submit" class="btn btn-danger">Taip, ištrinti</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        // Mygtukas, kuris atidarė modalą
+        const button = event.relatedTarget;
+
+        // Pasiimam duomenis iš mygtuko
+        const id = button.getAttribute('data-id');
+        const name = button.getAttribute('data-name');
+
+        // Įrašom į modalą
+        document.getElementById('deleteId').value = id;
+        document.getElementById('modalItemName').textContent = name;
+    });
+</script>
+

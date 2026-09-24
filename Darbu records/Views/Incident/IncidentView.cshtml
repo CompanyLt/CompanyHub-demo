@@ -1,0 +1,77 @@
+﻿@using Darbu_records.Formos
+@model List<IncidentForm> ;
+@{
+    ViewData["Title"] = "Pagrindinis puslapis";
+
+   // <title> @ViewBag.Title</title>
+    
+}
+@* kai rasai Query_Action tai bandai pasiekti objekta jei but statinis tai veiktu *@
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="d-flex justify-content-center">
+        <h1>Informacija apie kasu gedimus, sprendimo budai ir instrukcijos. </h1>
+        <img src="logo.jpg" alt="nuot" >
+
+    </div>
+                //meniu
+  
+}
+else
+{
+
+    <div class="row g-3">
+        @foreach (var list in Model)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+
+                    <!-- Korteles headeris -->
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">@list.pavadinimas</h5>
+                    </div>
+
+                    <!-- Korteles turinys -->
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text flex-grow-1">@list.aprasymas</p>
+
+                        <ul class="list-inline mb-3">
+                            <li class="list-inline-item"><i class="fa fa-comment me-1"></i>Comments: 0</li>
+                            <li class="list-inline-item"><i class="fa fa-thumbs-up me-1"></i>Likes: 0</li>
+                        </ul>
+
+                        <div class="d-flex flex-wrap gap-2 mt-auto">
+                            <form asp-area="" asp-controller="Incident" asp-action="IncidentDelete" asp-route-id="@list.iraso_id" class="m-0">
+                                <button type="submit" class="btn btn-danger btn-sm">Ištrinti</button>
+                            </form>
+
+                            <form asp-area="" asp-controller="Incident" asp-action="IncidentUpdate"
+                                  asp-route-iraso_id="@list.iraso_id"
+                                  asp-route-pavadinimas="@list.pavadinimas"
+                                  asp-route-aprasymas="@list.aprasymas"
+                                  asp-route-sprendimas="@list.sprendimas" class="m-0">
+                                <button type="submit" class="btn btn-warning btn-sm">Redaguoti</button>
+                            </form>
+
+                            <form asp-area="" asp-controller="Incident" asp-action="incidentReview" asp-route-incident_id="@list.iraso_id" class="m-0">
+                                <button type="submit" class="btn btn-info btn-sm text-white">Info</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    @if(Model.Any()== false)
+    {
+        <p>Irasu nera</p>
+    }
+
+
+
+}
+
+@*  quest ir prisijungusio realizavimas  *@
+

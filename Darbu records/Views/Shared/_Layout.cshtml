@@ -1,0 +1,98 @@
+﻿@using Darbu_records.Formos
+@using Darbu_records.DAL
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>@ViewData["Title"]</title>
+   @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  @*   <link rel="stylesheet" href="~/Darbu_records.styles.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css"  />
+   <script src="@Url.Content("~/bootstrap/js/bootstrap.bundle.js")"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center fs-4" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/Images/logo-white.svg" alt="Logo" style="height: 35px; width: auto;" class="me-2">
+                    <span>COMPANYHUB</span>
+                </a>
+            </div>
+
+            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            @if (User?.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @await Component.InvokeAsync("Navigation")
+                    </ul>
+
+                    <form class="d-flex me-3" method="get" asp-controller="Search" asp-action="search_notes" asp-route-id="@Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0")">
+                        <input class="form-control me-2 bg-transparent text-white shadow-none"
+                               type="search" placeholder="Įveskite tekstą" aria-label="Search" name="search"
+                               style="border: 1px solid #444;"> <button class="btn btn-outline-light" type="submit">Paieška</button>
+                    </form>
+
+                    @await Html.PartialAsync(partialViewName: "~/Views/Shared/Account_menu.cshtml")
+                </div>
+            }
+        </div>
+    </nav>
+
+
+
+
+
+   
+       
+    
+
+        <main role="main" class="main mt-50">
+          
+
+
+
+
+            @RenderBody()
+        </main>
+
+
+
+
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 my-5 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="mb-3 mb-md-0 text-body-secondary small text-uppercase fw-bold" style="letter-spacing: 1px;">
+                    © @DateTime.Now.Year RASO CompanyHub
+                </span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-center list-unstyled d-flex">
+                <li class="ms-3 text-muted" style="font-size: 0.8rem;">Sprendimai verslui</li>
+            </ul>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary small"></a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary small"></a></li>
+            </ul>
+        </footer>
+    </div>
+
+   
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@using Darbu_records.Formos
+@using Darbu_records.DAL
+@using Darbu_records.Models.Topic
+@{
+    ViewData["Title"] = "Gedimo registravimas";
+}
+@model TopicForm
+@inject NavigationLoader AppInfoService
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+
+            @* PAGRINDINĖ KORTELĖ: Be border, su stipriu šešėliu *@
+            <div class="card shadow-lg border-0 mb-3">
+
+                <div class="card-body p-4">
+
+                    @* HEADERIS: Identifikacinis stiliaus bruožas - atvira antraštė su linija *@
+                    <h4 class="mb-4 fw-bold text-uppercase border-bottom pb-2">
+                        <i class="bi bi-exclamation-triangle me-2"></i> Užrašo registravimo forma
+                    </h4>
+
+                    <form asp-controller="DepartmentBoard" asp-action="AddTopic" method="post" enctype="multipart/form-data">
+
+                        @* PAVADINIMAS *@
+                        <div class="mb-3">
+                            <label asp-for="title" class="form-label small fw-bold text-muted text-uppercase">Pavadinimas</label>
+                            <input asp-for="title" class="form-control border-secondary-subtle" placeholder="Įveskite pavadinimą..." />
+                            <span asp-validation-for="title" class="text-danger small"></span>
+                        </div>
+
+                        @* APRAŠYMAS *@
+                        <div class="mb-3">
+                            <label asp-for="description" class="form-label small fw-bold text-muted text-uppercase">Aprašymas</label>
+                            <textarea asp-for="description" class="form-control border-secondary-subtle" rows="6" placeholder="Aprašykite detales..."></textarea>
+                            <span asp-validation-for="description" class="text-danger small"></span>
+                        </div>
+
+                        @* FAILŲ ĮKĖLIMAS *@
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-muted text-uppercase">Failų įkėlimas</label>
+                            <div id="drop-zone"
+                                 class="border border-2 border-dashed rounded-3 p-4 text-center bg-light text-muted"
+                                 style="cursor: pointer; border-style: dashed !important;">
+                                <i class="bi bi-cloud-arrow-up fs-2 d-block mb-2"></i>
+                                <span>Tempkite failus čia arba spustelėkite</span>
+                            </div>
+                            <input type="file" id="photosInput" name="formFiles" class="d-none" multiple />
+                        </div>
+
+                        @* PATVIRTINIMO MYGTUKAS *@
+                        <div class="d-grid pt-2">
+                            <button type="submit" name="patvirtinti" class="btn btn-dark btn-lg shadow fw-bold text-uppercase py-3">
+                                Patvirtinti
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

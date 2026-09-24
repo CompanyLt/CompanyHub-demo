@@ -1,0 +1,33 @@
+﻿<div class="p-4 shadow-lg bg-white rounded-3 h-100 border-top border-dark border-5">
+    @* --- ANTRAŠTĖ SU PILKA JUOSTA --- *@
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+        <h4 class="fw-bold m-0 text-uppercase" style="letter-spacing: 1px;">
+            <i class="fa fa-info-circle me-2 text-dark"></i>Servisas
+        </h4>
+        <a asp-controller="DepartmentBoard" asp-action="Index" class="btn btn-dark btn-sm fw-bold text-uppercase px-3 shadow-sm rounded-2 transition-all">
+            <i class="fa fa-external-link me-1"></i> Atidaryti
+        </a>
+    </div>
+
+    <div class="row g-3">
+        @* Blokas: Tvarkos taisyklės *@
+        @await Component.InvokeAsync("DepartmentBoard")
+    </div>
+</div>
+
+<style>
+    .hover-raso {
+        transition: all 0.2s ease-in-out;
+        background-color: #ffffff;
+    }
+
+        .hover-raso:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+            border-color: #212529 !important; /* Tamsus rėmelis užvedus */
+        }
+
+            .hover-raso:hover .icon-box {
+                background-color: #444 !important; /* Lengvas pašviesėjimas piktogramai */
+            }
+</style>

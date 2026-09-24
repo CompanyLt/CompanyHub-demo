@@ -1,0 +1,128 @@
+﻿@using Darbu_records.Interfaces
+@model IWorker
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+
+            @* VIRŠUS: AVATARAS + DARBUOTOJAS *@
+            <div class="d-flex align-items-center mb-4">
+                <div class="rounded-circle overflow-hidden shadow-sm me-3"
+                     style="width:60px;height:60px;min-width:60px;">
+                   <img src="~/Images/workerAvatar.jpg"
+                                 class="w-100 h-100"
+                                 style="object-fit: cover;"
+                                 alt="Darbuotojo nuotrauka">
+                </div>
+                <div>
+                    <h4 class="fw-bold mb-0 text-dark">@Model.name @Model.surname</h4>
+                    <small class="text-muted">@Model.jobTitle</small>
+                </div>
+            </div>
+
+            @* FORMOS KORTELE *@
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-body p-4 p-md-5">
+
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="id" />
+
+                        @* ASMENINĖ INFORMACIJA *@
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Asmeninė informacija</h6>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Vardas</label>
+                                <input asp-for="name" class="form-control form-control-lg border-2" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Pavardė</label>
+                                <input asp-for="surname" class="form-control form-control-lg border-2" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Pareigos</label>
+                                <input asp-for="jobTitle" class="form-control border-2" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Stalo numeris</label>
+                                <input asp-for="tableNumber" class="form-control border-2" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Skyrius</label>
+                                <input asp-for="DepartmentName" class="form-control border-2" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Statusas</label>
+                                <select asp-for="status" class="form-select border-2">
+                                    <option value="Active" selected="@Model.status == " Active"">🟢 Aktyvus</option>
+                                    <option value="Vacation" selected="@Model.status == " Vacation"">🟡 Atostogos</option>
+                                    <option value="Inactive" selected="@Model.status == " Inactive"">🔴 Neaktyvus</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        @* SISTEMOS INFORMACIJA *@
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Sistemos informacija</h6>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Rolė</label>
+                                <select asp-for="role.Id" class="form-select border-2">
+                                    <option value="1">Vartotojas</option>
+                                    <option value="2">Administratorius</option>
+                                    <option value="3">Klientas</option>
+                                    <option value="4">Moderatorius</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        @* STATISTIKA *@
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Statistika</h6>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Level</label>
+                                <input class="form-control bg-light" value="@Model.progress" disabled />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase text-muted">Experience</label>
+                                <input class="form-control bg-light" value="@Model.expierence XP" disabled />
+                            </div>
+                        </div>
+
+                        @* ACTION BUTTONS *@
+                        <div class="d-flex justify-content-end gap-2 mt-4 form-actions">
+                            <a asp-action="Details" asp-route-id="@Model.id" class="btn btn-outline-secondary btn-lg px-4 fw-bold text-uppercase">Atšaukti</a>
+                            <button type="submit" class="btn btn-dark btn-lg px-5 fw-bold text-uppercase">Išsaugoti</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Kortelės stilius */
+    .worker-card, .card-body input, .card-body select {
+        border-radius: 10px;
+    }
+
+        .worker-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+    /* Input focus efektas */
+    .form-control:focus, .form-select:focus {
+        box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.05);
+        border-color: #212529;
+    }
+
+    /* Sticky action buttons */
+    .form-actions {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        padding: 15px 0;
+        border-top: 1px solid #eee;
+    }
+</style>

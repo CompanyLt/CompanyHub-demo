@@ -1,0 +1,54 @@
+﻿@model Darbu_records.Models.ShareDesk.ShareDesk
+
+@foreach (var shareItem in Model.Items)
+{
+    <div class="col-md-4 col-12 mb-4">
+        @* Pridedame 'position-relative' kortelei, kad 'stretched-link' žinotų savo ribas *@
+        <div class="card h-100 border-0 shadow-sm hover-sharedesk rounded-3 overflow-hidden position-relative">
+
+            <div class="position-relative bg-secondary d-flex align-items-center justify-content-center" style="height: 120px;">
+                <i class="fa fa-file-pdf-o text-white opacity-25 position-absolute" style="font-size: 5rem; right: -10px; bottom: -10px;"></i>
+                <i class="fa fa-cloud-download text-white" style="font-size: 3rem; z-index: 1;"></i>
+
+                <div class="position-absolute top-0 start-0 m-2">
+                    <span class="badge bg-dark text-uppercase" style="font-size: 0.65rem;">@shareItem.Name</span>
+                </div>
+            </div>
+
+            <div class="card-body p-3 text-center">
+                <h6 class="fw-bold mb-1">@shareItem.Title</h6>
+                <p class="text-muted small mb-3">@shareItem.Description</p>
+
+                @* 1. PERŽIŪRĖTI: Naudoja stretched-link, todėl visa kortelė tampa paspaudžiama *@
+                <a asp-controller="@shareItem.Asp_controller"
+                   asp-action="@shareItem.Asp_action"
+                   asp-route-id="@shareItem.Share_id"
+                   asp-route-department_access="@shareItem.Department_access"
+                   class="btn btn-outline-dark btn-sm w-100 fw-bold text-uppercase stretched-link"
+                   style="font-size: 0.7rem;">
+                    Peržiūrėti
+                </a>
+
+                
+            </div>
+
+        </div>
+    </div>
+}
+
+<style>
+    .hover-sharedesk {
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer; /* Parodome, kad visa kortelė spaudžiama */
+    }
+
+        .hover-sharedesk:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+        }
+
+            .hover-sharedesk:hover .fa.position-absolute {
+                transform: rotate(-10deg) scale(1.1);
+                transition: transform 0.5s ease;
+            }
+</style>

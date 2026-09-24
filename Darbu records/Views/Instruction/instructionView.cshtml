@@ -1,0 +1,104 @@
+﻿@using Darbu_records.Formos
+@model List<InstructionForm>
+@{
+    ViewData["Title"] = "Pagrindinis puslapis";
+
+   // <title> @ViewBag.Title</title>
+    
+}
+@if (User?.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div class="row g-4">
+        @foreach (var list in Model)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-lg hover-raso-clean rounded-3 overflow-hidden position-relative">
+                    <div class="bg-dark" style="height: 5px;"></div>
+
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h5 class="fw-bold text-dark text-uppercase mb-3" style="letter-spacing: 1px;">
+                            @list.pavadinimas
+                        </h5>
+
+                        <p class="text-muted small flex-grow-1 mb-4">
+                            @list.aprasymas
+                        </p>
+
+                        <div class="d-flex align-items-center gap-3 mb-4 py-2 border-top border-bottom">
+                            <span class="small text-muted fw-bold"><i class="fa fa-commenting-o me-1"></i> Komentarai: 0</span>
+                            <span class="small text-muted fw-bold"><i class="fa fa-thumbs-o-up me-1"></i> Patinka: @(list.patinka - 1)</span>
+                        </div>
+
+                        @* Pagrindinis mygtukas - DIDESNIS *@
+                        <div class="mb-3">
+                            <form asp-controller="Instruction" asp-action="instructionReview" asp-route-id="@list.iraso_id" asp-route-department_access="@list.department_access" class="m-0">
+                                <button type="submit" class="btn btn-dark w-100 fw-bold text-uppercase py-3 shadow-sm" style="font-size: 0.85rem; letter-spacing: 1px;">
+                                    <i class="fa fa-eye me-2"></i> Peržiūrėti instrukciją
+                                </button>
+                            </form>
+                        </div>
+
+                        @* Papildomi mygtukai - MAŽESNI *@
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <form asp-controller="Instruction" asp-action="InstructionUpdate"
+                                      asp-route-id="@list.iraso_id"
+                                      asp-route-title="@list.pavadinimas"
+                                      asp-route-description="@list.aprasymas" method="get" class="m-0">
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm w-100 fw-bold text-uppercase py-1" style="font-size: 0.65rem;">
+                                        <i class="fa fa-edit me-1"></i> Redaguoti
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                @{
+                                    var deleteModalId = "deleteModal" + list.iraso_id;
+                                }
+
+                                <button type="button" class="btn btn-outline-danger btn-sm w-100 fw-bold text-uppercase py-1"
+                                        style="font-size: 0.65rem;"
+                                        data-bs-toggle="modal" data-bs-target="#@deleteModalId">
+                                    <i class="fa fa-trash me-1"></i> Ištrinti
+                                </button>
+
+                                @* Modalinis langas lieka toks pat *@
+                                <div class="modal fade" id="@deleteModalId" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content border-0 shadow-lg rounded-3">
+                                            <div class="modal-header bg-dark text-white border-0">
+                                                <h5 class="modal-title fw-bold text-uppercase" style="letter-spacing: 1px;">Patvirtinkite trynimą</h5>
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body p-4 text-center">
+                                                <i class="fa fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                                                <h5 class="fw-bold mb-2 text-dark">Ar tikrai norite ištrinti?</h5>
+                                                <p class="text-muted mb-0">Ruošiatės pašalinti instrukciją:</p>
+                                                <p class="fw-bold text-dark mt-2">@list.pavadinimas</p>
+                                            </div>
+                                            <div class="modal-footer border-0 pb-4 justify-content-center">
+                                                <button type="button" class="btn btn-outline-secondary px-4 fw-bold text-uppercase" data-bs-dismiss="modal" style="font-size: 0.8rem;">Atšaukti</button>
+
+                                                <form asp-controller="Instruction" asp-action="InstructionDelete"
+                                                      asp-route-id="@list.iraso_id"
+                                                      asp-route-idCategory="@list.categoryId"
+                                                      method="post" class="m-0">
+                                                    <button type="submit" class="btn btn-danger px-4 fw-bold text-uppercase" style="font-size: 0.8rem;">Taip, ištrinti</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="text-center mt-5 pt-3">
+            <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm text-uppercase fw-bold border-0">
+                <i class="fa fa-arrow-left me-2"></i> Grįžti į sąrašą
+            </a>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,118 @@
+﻿@using Darbu_records.Formos
+@using Darbu_records.DAL
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>@ViewData["Title"]</title>
+   @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  @*   <link rel="stylesheet" href="~/Darbu_records.styles.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css"  />
+   <script src="@Url.Content("~/bootstrap/js/bootstrap.bundle.js")"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                @* Grįžti į pagrindinę svetainę (ne Admin dalį) *@
+                <a class="navbar-brand d-flex align-items-center fs-4" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                    <img src="~/Images/logo-white.svg" alt="Logo" style="height: 35px; width: auto;" class="me-2">
+                    <span>COMPANYHUB <small class="text-warning fs-6 ms-2">ADMIN</small></span>
+                </a>
+            </div>
+
+            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            @if (User?.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @* Pagrindinis Admin Dashboard *@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Apžvalga</a>
+                        </li>
+
+                        @* DEPARTMENT DALIS *@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Department" asp-action="Index">Departamentai</a>
+                        </li>
+
+                        @* KITOS DALYS (pvz. Vartotojai ar Nustatymai) *@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Darbuotojai</a>
+                        </li>
+
+                        @* Pavyzdys išskleidžiamam meniu, jei prireiktų konfigūracijai *@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Konfigūracija
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Settings" asp-action="General">Bendri nustatymai</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Settings" asp-action="Roles">Rolių valdymas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+              
+
+                    @* Paskyros meniu *@
+                    @await Html.PartialAsync(partialViewName: "~/Views/Shared/Account_menu.cshtml")
+                </div>
+            }
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+    <main role="main" class="main mt-50">
+
+
+
+
+
+        @RenderBody()
+    </main>
+
+
+
+
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 my-5 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="mb-3 mb-md-0 text-body-secondary small text-uppercase fw-bold" style="letter-spacing: 1px;">
+                    © @DateTime.Now.Year RASO CompanyHub
+                </span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-center list-unstyled d-flex">
+                <li class="ms-3 text-muted" style="font-size: 0.8rem;">Sprendimai verslui</li>
+            </ul>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary small"></a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary small"></a></li>
+            </ul>
+        </footer>
+    </div>
+
+
+
+</body>
+</html>

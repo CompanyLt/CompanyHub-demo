@@ -1,0 +1,114 @@
+﻿
+@using Darbu_records.OldItems;
+    using Darbu_records.OldItems;
+ @* tam kad matytu ClaimsType *@
+@model Quest_Query_Action
+
+
+@{
+    ViewData["Title"] = "Pagrindinis puslapis";
+    
+}
+@* kai rasai Query_Action tai bandai pasiekti objekta jei but statinis tai veiktu *@
+@if (!User.Identity.IsAuthenticated)
+{
+
+
+
+
+   @foreach(var list in Model._records)
+        {
+
+//forma------------------------------------------------------------
+         <div class="forma">
+
+            <div class="headeris"><p class="title">@list.pavadinimas</p></div>
+
+                <div class="aprasymas">
+                   
+                   
+                 
+                    @list.aprasymas
+                </div>
+
+
+                <div>
+                   <ul class="comment_like">
+                       <li>Comment: 0</li>
+                       <li class="like">likes: 0</li>
+                   </ul> 
+
+                </div>
+
+
+
+
+
+
+            <form class="info" asp-area="" asp-controller="Home" asp-action="gedimo_review"
+                  asp-route-id="@list.iraso_id">
+                <input type="submit" value="Info " />
+
+            </form>
+             
+            
+        </div>
+      
+
+         }
+
+@foreach(var list in Model._instrukcijos)
+        {
+       
+        //forma------------------------------------------------------------
+         <div class="forma">
+
+              <div class="headeris" >@list.pavadinimas</div>
+
+                <div>  <textarea class="textas">
+                   INSTRUKCIJA
+                    @list.aprasymas
+
+                </textarea> </div>
+
+
+                <div>
+                   <ul class="comment_like">
+                       <li>Comment: 0</li>
+                     @*   //Jei perduoti su @Model tai grazina, jei be tai negrazina i button nieko *@
+                    <li class="like">
+                        likes:@(list.patinka - 1)</li>
+                   </ul> 
+
+                </div>
+
+
+            <form class="info" asp-area="" asp-controller="Home" asp-action="instrukcijos_review"
+                  asp-route-pavadinimas="@list.pavadinimas"
+                  asp-route-aprasymas="@list.aprasymas"
+                  asp-route-id="@list.iraso_id"
+                  asp-route-patinka="@list.patinka"
+                  asp-route-nuotrauka="@list.file_name">
+               
+
+                <input type="submit" value="Info " />
+            </form>
+             
+            
+        </div>
+      
+
+         }
+
+    @if (Model._records.Any() == false && Model._instrukcijos.Count()==0)
+    {
+       <p>Irasu nera.</p>
+
+    }
+
+
+
+}
+
+@*  quest ir prisijungusio realizavimas  *@
+

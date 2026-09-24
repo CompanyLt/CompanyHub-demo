@@ -1,0 +1,164 @@
+﻿@using Darbu_records.Models.Department
+@model List<DepartmentItem>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-10">
+
+            <!-- HEADER -->
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                <div>
+                    <h4 class="fw-bold mb-0 text-dark">Pasirinkite skyrių</h4>
+                    <small class="text-muted fw-bold text-uppercase" style="font-size:0.7rem;">
+                        Iš viso: @Model.Count
+                    </small>
+                </div>
+
+                <div style="max-width:400px;width:100%;">
+                    <div class="input-group shadow-sm border rounded">
+                        <span class="input-group-text bg-white border-0">
+                            <i class="fa fa-search text-muted"></i>
+                        </span>
+
+                        <input type="text"
+                               id="deptSearch"
+                               class="form-control border-0 ps-0"
+                               placeholder="Ieškoti skyriaus..."
+                               style="box-shadow:none;">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- SKYRIŲ SĄRAŠAS -->
+            <div class="row g-4" id="departmentList">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-xl-4 department-item">
+
+                        <a asp-area="Admin"
+                           asp-controller="User"
+                           asp-action="ViewWorker"
+                           asp-route-id="@item.Id"
+                           class="text-decoration-none">
+
+                            <div class="card border-0 shadow-lg worker-card h-100">
+
+                                <div class="card-body d-flex align-items-center p-4">
+
+                                    <!-- AVATAR -->
+                                    <div class="rounded-circle overflow-hidden shadow-sm me-3"
+                                         style="width:55px;height:55px;min-width:55px;">
+
+                                        @if (item.recordFile != null &&
+                                       !string.IsNullOrEmpty(item.recordFile.name) &&
+                                       !string.IsNullOrEmpty(item.recordFile.directory))
+                                        {
+                                            <img src="/Access/GetFile?url=@item.recordFile.name&directory=@item.recordFile.directory"
+                                                 class="w-100 h-100"
+                                                 style="object-fit: cover;"
+                                                 alt="Grupes nuotrauka">
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/departmentAvatar.png"
+                                                 class="w-100 h-100"
+                                                 style="object-fit: cover;"
+                                                 alt="Grupes nuotrauka">
+                                        }
+
+                                    </div>
+
+
+                                    <div class="overflow-hidden">
+
+                                        <h6 class="fw-bold mb-1 text-dark text-truncate">
+                                            @item.Name
+                                        </h6>
+
+                                        <small class="text-muted d-block">
+                                            Peržiūrėti darbuotojus
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+
+
+            <!-- TUŠČIAS REZULTATAS -->
+            <div id="noResults" class="text-center py-5 d-none">
+
+                <i class="fa fa-search fa-3x text-light mb-3"></i>
+                <p class="text-muted fw-bold text-uppercase">Skyrių nerasta</p>
+
+            </div>
+
+
+            <!-- BACK -->
+            <div class="mt-5 pt-4 border-top text-center">
+
+                <a href="javascript:history.back()"
+                   class="btn btn-link text-muted text-decoration-none fw-bold text-uppercase small">
+
+                    <i class="fa fa-arrow-left me-2"></i>
+                    Grįžti atgal
+
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .worker-card {
+        transition: all .25s ease-in-out;
+    }
+
+        .worker-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,.12) !important;
+        }
+
+</style>
+
+
+<script>
+
+    document.getElementById('deptSearch')?.addEventListener('input', function (e) {
+
+        const text = e.target.value.toLowerCase();
+        let visible = 0;
+
+        document.querySelectorAll('.department-item').forEach(item => {
+
+            const name = item.querySelector('h6').innerText.toLowerCase();
+
+            if (name.includes(text)) {
+                item.style.display = "block";
+                visible++;
+            }
+            else {
+                item.style.display = "none";
+            }
+
+        });
+
+        document.getElementById("noResults").classList.toggle("d-none", visible !== 0);
+
+    });
+
+</script>

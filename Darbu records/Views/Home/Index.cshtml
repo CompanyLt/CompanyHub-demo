@@ -1,0 +1,47 @@
+﻿@using Darbu_records.OldItems;
+
+@{
+    ViewData["Title"] = "Pagrindinis puslapis";
+
+   // <title> @ViewBag.Title</title>
+    
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+
+
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-lg-8 col-12">
+                @await Html.PartialAsync("section1")
+            </div>
+            <div class="col-lg-4 col-12">
+                @await Html.PartialAsync("section2")
+            </div>
+        </div>
+
+        <hr />
+        @*
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                @await Html.PartialAsync("section3")
+            </div>
+            @* <div class="col-lg-4 col-12">
+                @await Html.PartialAsync("section4")
+            </div> 
+        </div>
+            *@
+        <hr />
+        <div class="row mb-4">
+            <div class="col-lg-12 col-12">
+                @await Html.PartialAsync("section5")
+            </div>
+            
+        </div>
+    </div>
+
+  
+}
+

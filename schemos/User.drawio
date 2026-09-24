@@ -1,0 +1,263 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.4" pages="6">
+  <diagram id="Azg8uO7pWOjzpDSybFSw" name="Page-1">
+    <mxGraphModel dx="1050" dy="557" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5-JKRtYj-8piolg4hS-h-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="240" width="140" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="5-JKRtYj-8piolg4hS-h-5" value="1. pareigos.&lt;div&gt;2.Lygis.&lt;/div&gt;&lt;div&gt;3.exp lentele.&lt;/div&gt;&lt;div&gt;4.Premija.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;sitai saugojame pagrindineje user lenteleje&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="240" width="135" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="5-JKRtYj-8piolg4hS-h-7" value="User" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="80" y="210" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5-JKRtYj-8piolg4hS-h-8" value="TaskSet-&amp;gt;Perduodame uzduotys vartotojui&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;TaskGet-&amp;gt;gauname visas uzduotys&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="130" width="180" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="5-JKRtYj-8piolg4hS-h-9" value="IUserTaskService" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="230" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8kd27y2j3vRUtaQW3q5V-1" value="efectivePointSet()-&amp;gt;perduoda efektyvumo taskus&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;efectivePointGet()-&amp;gt;gauname taskus&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="240" width="150" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="8kd27y2j3vRUtaQW3q5V-2" value="IUserExpService" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="610" y="210" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8kd27y2j3vRUtaQW3q5V-3" value="premieSum()-&amp;gt;paskaiciuoja sumos dydi&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="241" width="150" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="8kd27y2j3vRUtaQW3q5V-4" value="IUserPremieService" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="420" y="211" width="130" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="W4_3TELs96EV5RXSJElB" name="Imones hierarchija">
+    <mxGraphModel dx="1281" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="60" width="680" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-3" value="IMONE" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="26" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="100" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-6" value="Skyrius" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="70" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-7" value="Pirmas sluoksnis tai imoneje esancios kryptis, pvz pardavimai, servisas, it ir t.t.&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="115" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="200" width="520" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-9" value="Grupes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="170" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-10" value="Cia jau skyriams priklausantys grupiu blokai pvz klientai, kazkoks irangos gamintojas ir pan" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="215" width="490" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-11" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="295" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-12" value="Kategorijos" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="265" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-13" value="Grupems priklausancios kategorijos, tai dar smulkesnis sluoksnis pvz: konkreti kazkokia iranga ar kryptis" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="310" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-15" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="730" width="220" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="730" width="220" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="730" width="220" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-18" value="Skyrius" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="690" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-19" value="id&lt;div&gt;name&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="780" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-20" value="Grupe" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="690" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-21" value="kategorijos" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="670" y="690" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-22" value="id&lt;div&gt;name&lt;/div&gt;&lt;div&gt;skyriusId foreign key&lt;/div&gt;&lt;div&gt;status&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="363" y="760" width="125" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ISt7T3nlAxrvmXx2vS0T-23" value="id&amp;nbsp;&lt;div&gt;name&lt;/div&gt;&lt;div&gt;groupId foreign key&lt;/div&gt;&lt;div&gt;status&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="630" y="740" width="140" height="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eVB9OZVCqY_vxK1fFRWY" name="AppConfiguration">
+    <mxGraphModel dx="1281" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HV3lcEQEzF9FKjRa0JaG-2" value="Pagal appUserId foreign key paimamas worker irasas su darbuotojo informacija.&lt;br&gt;&lt;b&gt;departmentId&lt;/b&gt; naudojamas kaip id paimti navigacijos duomenys" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="130" y="160" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="HV3lcEQEzF9FKjRa0JaG-3" value="1.Konfigas imamas logino metu&lt;br&gt;2.Prisijungus paimami darbuotojo duomenys&lt;br&gt;&lt;div&gt;3.Department visas konfigas.&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="470" y="30" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="HV3lcEQEzF9FKjRa0JaG-4" value="Worker" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="180" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nnPEsrAALNFvYMSaflQd-1" value="Tai pagrindinio lango veiksmo mygtukai prie kuriu pririsami veiksmai&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="180" width="160" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="nnPEsrAALNFvYMSaflQd-2" value="ActonConfig" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="138" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nnPEsrAALNFvYMSaflQd-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="nnPEsrAALNFvYMSaflQd-3" target="nnPEsrAALNFvYMSaflQd-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nnPEsrAALNFvYMSaflQd-3" value="&lt;div&gt;Navigacijos mygtukai kurie priskiriami veiksmo mygtukams&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="180" width="160" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="nnPEsrAALNFvYMSaflQd-4" value="NavigationConfig" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="685" y="138" width="110" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Q8rM8VxSzn8FPeVBp3JF" name="Naujienu sekcija">
+    <mxGraphModel dx="1281" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DW8QtsrvJxS6X97m8x8o-1" value="Sitoje sekcijoje bus atvaizduojamos imones naujienos, Sukurtos skyriaus naujienos." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="240" y="28" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DW8QtsrvJxS6X97m8x8o-2" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Naujienos pav&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="150" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="DW8QtsrvJxS6X97m8x8o-3" value="Nuotrauka" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="150" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="DW8QtsrvJxS6X97m8x8o-4" value="Title,&lt;div&gt;description,&lt;/div&gt;&lt;div&gt;image,&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="120" width="120" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="yMIic71VC6L-CcU-TLhW" name="IVYKIAI">
+    <mxGraphModel dx="1281" dy="1662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="350" width="300" x="270" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="IVYKIAI" vertex="1">
+          <mxGeometry height="30" width="60" x="390" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Aprasymas" vertex="1">
+          <mxGeometry height="100" width="260" x="290" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="30" width="260" x="290" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Ivykio pavadinimas" vertex="1">
+          <mxGeometry height="30" width="110" x="370" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cia atvaizduojami skyriaus ivykiai" vertex="1">
+          <mxGeometry height="110" width="100" x="60" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-12" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Vartotojas" vertex="1">
+          <mxGeometry height="60" width="30" x="160" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Data" vertex="1">
+          <mxGeometry height="20" width="260" x="290" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="100" width="260" x="290" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Balsavimo pavadinimas" vertex="1">
+          <mxGeometry height="30" width="260" x="290" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="kFOEE9lGo98QRSGk0Syf-18" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ul&gt;&lt;li&gt;Variantas1&lt;/li&gt;&lt;li&gt;Variantas 2&lt;/li&gt;&lt;li&gt;Value 3&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="110" x="360" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Ivykiu funkcionalumas:&lt;br&gt;Tai sekcija kas vyksta visoje imoneje. pvz kazkoks balsavimas, Gimtadienio pranesimas, imones kazkokie ivykiai, mini naujienos." vertex="1">
+          <mxGeometry height="280" width="530" x="620" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="340" width="260" x="840" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ivykio perziura" vertex="1">
+          <mxGeometry height="20" width="140" x="900" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Balsavimo galimybe" vertex="1">
+          <mxGeometry height="20" width="140" x="900" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ivykiu valdymas" vertex="1">
+          <mxGeometry height="20" width="140" x="900" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-9" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Vartotojas" vertex="1">
+          <mxGeometry height="60" width="30" x="750" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-10" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Adminas" vertex="1">
+          <mxGeometry height="60" width="30" x="1170" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-12" edge="1" parent="1" source="7lWoaN-nJXYYZu2vMjz_-9" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="7lWoaN-nJXYYZu2vMjz_-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="710" y="390" as="sourcePoint" />
+            <mxPoint x="760" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-14" edge="1" parent="1" source="7lWoaN-nJXYYZu2vMjz_-9" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="7lWoaN-nJXYYZu2vMjz_-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="870" y="348" as="sourcePoint" />
+            <mxPoint x="990" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-15" edge="1" parent="1" source="7lWoaN-nJXYYZu2vMjz_-10" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="7lWoaN-nJXYYZu2vMjz_-7" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="800" y="400" as="sourcePoint" />
+            <mxPoint x="920" y="413" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-16" edge="1" parent="1" source="7lWoaN-nJXYYZu2vMjz_-10" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" target="7lWoaN-nJXYYZu2vMjz_-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1140" y="290" as="sourcePoint" />
+            <mxPoint x="1260" y="303" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7lWoaN-nJXYYZu2vMjz_-17" edge="1" parent="1" source="7lWoaN-nJXYYZu2vMjz_-10" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="7lWoaN-nJXYYZu2vMjz_-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1270" y="400" as="sourcePoint" />
+            <mxPoint x="1140" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p16esjlMCkKkGpI5EA3p" name="Main page">
+    <mxGraphModel dx="1281" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="94tI1L8bT9J7P-aFKMjY-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="400" width="460" x="170" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="94tI1L8bT9J7P-aFKMjY-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="40" width="460" x="170" y="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

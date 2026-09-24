@@ -1,0 +1,38 @@
+﻿@using Darbu_records.Formos;
+@model IncidentForm;
+
+
+
+
+<script>
+    function priartinimas(nuotrauka) {
+        nuotrauka.classList.toggle("priartinimas");
+    }
+</script>
+<div class="info_meniu">
+
+
+<div class="review">
+  
+        <h1>Note INFO</h1>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <h2>@Model.pavadinimas</h2>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <textarea>@Model.aprasymas</textarea>
+    <h1>Sprendimas</h1>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <textarea>@Model.sprendimas</textarea>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <h1>Nuotraukos</h1>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <div class="collage">
+        <img src="~/image/@Model.nuotrauka" alt="Nuotraukos nera" class="nuotrauka" id="1nuotrauka" onclick="priartinimas(this)" />
+      
+    </div>
+
+
+
+
+
+</div>
+</div>

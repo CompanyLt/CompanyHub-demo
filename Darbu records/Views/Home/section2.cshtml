@@ -1,0 +1,94 @@
+﻿<div class="p-4 shadow-lg bg-white rounded-3 h-100 border-top border-dark border-5">
+
+    <div class="mb-4 d-flex align-items-center justify-content-between">
+        <h4 class="fw-bold m-0 text-uppercase" style="letter-spacing: 1px;">
+            <i class="fa fa-bullhorn me-2 text-dark"></i>Įvykiai 
+        </h4>
+    </div>
+
+    @* Įvykis: Gimtadienis (Pavyzdys) *@
+    <div class="card mb-3 border-secondary-subtle shadow-sm hover-raso rounded-2">
+        <div class="d-flex align-items-stretch">
+            <div class="bg-dark text-white d-flex flex-column justify-content-center align-items-center text-center p-3" style="min-width: 80px;">
+                <h4 class="fw-bold mb-0">30</h4>
+                <small class="text-uppercase" style="font-size: 0.65rem;">Saus</small>
+            </div>
+
+            <div class="p-3">
+                <div class="d-flex align-items-center mb-1">
+                    <span class="badge bg-warning text-dark me-2" style="font-size: 0.6rem;">ŠVENTĖ</span>
+                    <h6 class="text-uppercase fw-bold mb-0 text-dark" style="font-size: 0.85rem;">Gimtadienio sveikinimas!</h6>
+                </div>
+                <p class="small mb-0 text-secondary">Sveikiname Joną Jonaitį jubiliejaus proga! Virtuvėlėje laukia vaišės. 🎂</p>
+            </div>
+        </div>
+    </div>
+
+    @* Įvykis: Susirinkimas *@
+    <div class="card mb-4 border-secondary-subtle shadow-sm hover-raso rounded-2">
+        <div class="d-flex align-items-stretch">
+            <div class="bg-light d-flex flex-column justify-content-center align-items-center text-center p-3 border-end" style="min-width: 80px;">
+                <h4 class="fw-bold mb-0 text-dark">05</h4>
+                <small class="text-muted text-uppercase" style="font-size: 0.65rem;">Vas</small>
+            </div>
+            <div class="p-3">
+                <h6 class="text-uppercase fw-bold mb-1 text-dark" style="font-size: 0.85rem;">Mėnesio aptarimas</h6>
+                <ul class="list-unstyled mb-1 text-muted" style="font-size: 0.75rem;">
+                    <li><i class="fa fa-clock-o me-2"></i>09:00 val.</li>
+                    <li><i class="fa fa-map-marker me-2"></i>Didžioji salė</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="mt-5 pt-3 border-top">
+       @*  CIA JEIGU YRA BALSAVIMAS *@
+        @* <div class="card border-0 bg-light rounded-3">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 35px; height: 35px;">
+                        <i class="fa fa-question-circle"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0 text-dark">Kolektyvo apklausa</h5>
+                </div>
+
+                <p class="small text-muted mb-4">Kur norėtumėte vykti vasaros išvykos metu?</p>
+
+                <form  class="mb-4">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input border-secondary" type="radio" name="poll" id="opt1">
+                        <label class="form-check-label small text-dark" for="opt1">Plaukimas baidarėmis</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input border-secondary" type="radio" name="poll" id="opt2">
+                        <label class="form-check-label small text-dark" for="opt2">Ekskursija į pajūrį</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input border-secondary" type="radio" name="poll" id="opt3">
+                        <label class="form-check-label small text-dark" for="opt3">Piknikas gamtoje</label>
+                    </div>
+                </form>
+
+                <button class="btn btn-dark btn-sm w-100 text-uppercase fw-bold shadow-sm py-2">Balsuoti</button>
+            </div>
+        </div> *@
+    </div>
+
+</div>
+
+<style>
+    /* Naudojame tavo hover stilių, kurį sukūrėme anksčiau */
+    .hover-raso {
+        transition: all 0.2s ease-in-out;
+    }
+
+        .hover-raso:hover {
+            transform: translateX(5px); /* Įvykiams geriau tinka postūmis į šoną */
+            border-color: #212529 !important;
+            background-color: #f8f9fa;
+        }
+</style>

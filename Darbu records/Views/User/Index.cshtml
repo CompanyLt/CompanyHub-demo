@@ -1,0 +1,138 @@
+﻿@using Darbu_records.DAL
+@model Worker
+
+<div class="container py-4">
+    @* --- 1 SALA: DARBUOTOJO INFORMACIJA --- *@
+    <div class="card shadow-lg border-0 mb-4 rounded-3 overflow-hidden">
+        <div class="bg-dark" style="height: 5px;"></div>
+        <div class="card-body p-4">
+            <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">
+                <i class="fa fa-user me-2"></i> Darbuotojo profilis
+            </h6>
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <div class="hover-zoom rounded-circle shadow-sm overflow-hidden d-inline-block border border-3 border-light" style="width: 200px; height: 200px;">
+                        <img class="img-fluid w-100 h-100" src="~/Images/sampleUser.jpg" alt="nuotrauka" style="object-fit: cover;" />
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="text-muted small text-uppercase fw-bold d-block">Pareigos</label>
+                            <span class="fs-5 fw-bold text-dark">@Model.jobTitle</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small text-uppercase fw-bold d-block">Skyrius</label>
+                            <span class="fs-5 text-dark">@Model.DepartmentName</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small text-uppercase fw-bold d-block">Patirtis</label>
+                            <span class="badge bg-dark px-3 py-2 mt-1">1 Metai</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* --- 2 SALA: UŽDUOTYS --- *@
+    <div class="card shadow-lg border-0 mb-4 rounded-3">
+        <div class="card-body p-4">
+            <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">
+                <i class="fa fa-tasks me-2"></i> Aktyvios Užduotys
+            </h6>
+
+            <div class="row g-3">
+                @* Kortelė: Užduotis 1 (Aktyvi) *@
+                <div class="col-12 col-lg-6">
+                    <div class="card border-0 shadow-sm h-100 position-relative overflow-hidden bg-light hover-raso-clean">
+                        @* Spalvotas šonas indikacijai *@
+                        <div class="position-absolute top-0 start-0 h-100 bg-success" style="width: 6px;"></div>
+
+                        <div class="card-body ps-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge bg-dark text-white fw-bold px-3 py-2">10 XP</span>
+                                <small class="text-success fw-bold text-uppercase" style="font-size: 0.65rem;">
+                                    <i class="fa fa-play-circle me-1"></i>Vykdoma
+                                </small>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Pardavimų tikslas</h6>
+                            <p class="small text-muted mb-0">Per savaitę padaryta 15 pardavimų</p>
+                        </div>
+                    </div>
+                </div>
+
+                @* Kortelė: Užduotis 2 (Laukia) *@
+                <div class="col-12 col-lg-6">
+                    <div class="card border-0 shadow-sm h-100 position-relative overflow-hidden border-start border-3 border-secondary hover-raso-clean" style="background-color: #fdfdfd;">
+                        @* Subtilesnis šonas laukiančiai užduočiai *@
+                        <div class="position-absolute top-0 start-0 h-100 bg-secondary opacity-25" style="width: 6px;"></div>
+
+                        <div class="card-body ps-4 text-muted">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge bg-secondary opacity-50 text-white fw-bold px-3 py-2">20 XP</span>
+                                <small class="text-uppercase fw-bold" style="font-size: 0.65rem;">
+                                    <i class="fa fa-clock-o me-1"></i>Eilėje
+                                </small>
+                            </div>
+                            <h6 class="fw-bold mb-1">Efektyvumas</h6>
+                            <p class="small mb-0">Pasiekti numatytą efektyvumo rodiklį</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* --- 3 SALA: APDOVANOJIMAI --- *@
+    <div class="card shadow-lg border-0 mb-4 rounded-3">
+        <div class="card-body p-4">
+            <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">
+                <i class="fa fa-trophy me-2"></i> Apdovanojimai
+            </h6>
+
+            <div class="row g-3">
+                @foreach (var achievement in Model.achievments)
+                {
+                    var modalId = "modal" + achievement.Id;
+                    var modalLabelId = "modalLabel" + achievement.Id;
+
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="card border-0 shadow-sm h-100 p-2 hover-raso-clean rounded-3 text-center"
+                             style="cursor:pointer; background-color: #f8f9fa;"
+                             data-bs-toggle="modal" data-bs-target="#@modalId">
+
+                            <img src="~/achievment/images/@achievement.Image"
+                                 class="img-fluid mb-2"
+                                 alt="@achievement.Name"
+                                 style="width:60px; height:60px; object-fit:contain; margin:auto;">
+
+                            <div class="fw-bold" style="font-size: 0.7rem;">@achievement.Name</div>
+                        </div>
+
+                        @* MODALAS *@
+                        <div class="modal fade" id="@modalId" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content border-0 shadow-lg rounded-3">
+                                    <div class="modal-header bg-dark text-white border-0">
+                                        <h5 class="modal-title fw-bold text-uppercase small" style="letter-spacing: 1px;">Apdovanojimas</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Uždaryti"></button>
+                                    </div>
+                                    <div class="modal-body p-4 text-center">
+                                        <img src="~/achievment/images/@achievement.Image" class="img-fluid mb-3" style="width: 100px;">
+                                        <h5 class="fw-bold text-dark">@achievement.Name</h5>
+                                        <p class="text-muted small">@achievement.Description</p>
+                                    </div>
+                                    <div class="modal-footer border-0 justify-content-center pb-4">
+                                        <button type="button" class="btn btn-dark px-4 fw-bold text-uppercase" style="font-size: 0.75rem;" data-bs-dismiss="modal">Supratau</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

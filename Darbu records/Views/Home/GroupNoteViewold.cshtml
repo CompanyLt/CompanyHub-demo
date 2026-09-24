@@ -1,0 +1,20 @@
+﻿@model List<CategoryGroup>
+
+
+
+<div class="row">
+    @foreach (var group in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+
+                <a asp-controller="Home" asp-action="CategoriesIncidentView" asp-route-categoryId="@group.Id" class="stretched-link text-decoration-none">
+                  
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-title">@group.Name</h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,123 @@
+﻿@using Darbu_records.Models.Topic
+@model TopicForm;
+@* @inject Darbu_records.DAL.FileCommunicationService fileCommunication; *@
+
+
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+
+            <div class="card shadow-lg border-0 mb-4 rounded-3 overflow-hidden">
+                <div class="bg-dark text-white p-4 text-center">
+                    <h3 class="fw-bold text-uppercase m-0" style="letter-spacing: 2px;">@Model.title</h3>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <label class="small fw-bold text-muted text-uppercase d-block mb-2">Aprašymas</label>
+                    <p class="lead text-dark mb-0">@Model.description</p>
+
+                    @* Patinka mygtukas (jei nuspręsi grąžinti) *@
+                    @* <div class="mt-4 pt-3 border-top">
+                        <span class="text-muted small fw-bold text-uppercase">
+                            <i class="fa fa-heart-o me-1"></i> Patinka: @(Model.patinka - 1)
+                        </span>
+                    </div> *@
+                </div>
+            </div>
+
+            @foreach (var file in Model.fileForm.pdfCollection)
+            {
+                <div class="card shadow-lg border-0 mb-4 rounded-3 overflow-hidden">
+                    <div class="card-header bg-light border-0 py-3">
+                        <h6 class="m-0 fw-bold text-uppercase small text-dark">
+                            <i class="fa fa-file-pdf-o me-2 text-danger"></i> Dokumento peržiūra
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="/Access/GetPdfFile?url=@file.name&directory=@file.directory"
+                                    style="border:none;" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.fileForm.photosCollection.Any())
+            {
+                <div class="card shadow-lg border-0 mb-4 rounded-3">
+                    <div class="card-body p-4">
+                        <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">
+                            <i class="fa fa-image me-2"></i> Vizualinė medžiaga
+                        </h6>
+                        <div class="row g-3">
+                            @foreach (var p in Model.fileForm.photosCollection)
+                            {
+                                <div class="col-6 col-md-4 col-lg-3">
+                                    <div class="rounded shadow-sm overflow-hidden bg-light" style="height: 150px;">
+                                        <img src="/Access/GetFile?url=@p.name&directory=@p.directory"
+                                             class="img-fluid w-100 h-100"
+                                             style="object-fit: cover; cursor: pointer;"
+                                             alt="Nuotrauka"
+                                             onclick="priartinimas(this)">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.fileForm.filesCollection.Any())
+            {
+                <div class="card shadow-lg border-0 mb-4 rounded-3">
+                    <div class="card-body p-4">
+                        <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">
+                            <i class="fa fa-download me-2"></i> Priedai ir failai
+                        </h6>
+
+                        @foreach (var file in Model.fileForm.filesCollection)
+                        {
+                            @* Pridėtas švelnus pilkšvas fonas (bg-light ar subtilus tamsinimas) *@
+                            <div class="border rounded-3 p-3 mb-3 shadow-sm d-flex justify-content-between align-items-center"
+                                 style="background-color: #f8f9fa;">
+                                @* Čia gali keisti į #f1f1f1 jei nori dar tamsiau *@
+
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-file-o text-dark fs-4 me-3"></i>
+                                    <div>
+                                        <div class="fw-bold text-dark mb-0" style="font-size: 0.9rem;">@file.originalName</div>
+                                        <small class="text-muted" style="font-size: 0.8rem;">Įkelta: @file.upload_date.ToString("yyyy-MM-dd")</small>
+                                    </div>
+                                </div>
+
+                                <a href="/Access/GetFile?url=@file.name&directory=@file.directory"
+                                   class="btn btn-dark btn-sm fw-bold text-uppercase px-3 shadow-sm" style="font-size: 0.75rem;">
+                                    <i class="fa fa-download me-1"></i> Atsisiųsti
+                                </a>
+
+                            </div>
+                         }
+                    </div>
+                </div>
+            }
+
+            <div class="text-center mt-4">
+                <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm text-uppercase fw-bold border-0">
+                    <i class="fa fa-arrow-left me-2"></i> Grįžti į sąrašą
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-zoom img {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-zoom:hover img {
+        transform: scale(1.1);
+    }
+</style>

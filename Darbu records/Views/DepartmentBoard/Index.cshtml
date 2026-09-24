@@ -1,0 +1,122 @@
+﻿<div class="container-fluid py-4">
+    <div class="row g-4">
+
+        @* 1. ATSKIRAS VEIKSMŲ MENIU BLOKAS (KAIRĖJE) *@
+        <div class="col-lg-3 col-xl-2 order-1">
+            <div class="sticky-top" style="top: 24px; z-index: 100;">
+
+                @* VEIKSMŲ KORTELĖ *@
+                <div class="shadow-lg bg-white rounded-3 border-top border-dark border-5 overflow-hidden">
+
+                    @* HEADERIS: Suvienodintas su pagrindiniu *@
+                    <div class="p-4 border-bottom bg-white text-center">
+                        <h6 class="fw-bold m-0 text-uppercase text-dark" style="letter-spacing: 1px;">
+                            Veiksmai
+                        </h6>
+                    </div>
+
+                    <div class="card-body p-3 bg-white">
+                        <div class="d-grid gap-2">
+
+                            <a asp-controller="DepartmentBoard" asp-action="TopicRegistration"
+                               class="btn btn-light border text-start fw-bold text-uppercase px-3 py-2 hover-raso-side">
+                                <i class="fa fa-plus-circle me-2 text-success"></i> Naujas įrašas
+                            </a>
+
+                            <a asp-controller="DepartmentBoard" asp-action="Edit"
+                               class="btn btn-light border text-start fw-bold text-uppercase px-3 py-2 hover-raso-side">
+                                <i class="fa fa-plus-circle me-2 text-success"></i> Redaguoti
+                            </a>
+
+                            <hr class="my-2 opacity-10">
+
+                            <a href="javascript:history.back()"
+                               class="btn btn-light border text-start fw-bold text-uppercase px-3 py-2 hover-raso-side">
+                                <i class="fa fa-arrow-left me-2 text-muted"></i> Grįžti atgal
+                            </a>
+
+                        </div>
+                    </div>
+
+                  
+                </div>
+
+            </div>
+        </div>
+
+        @* 2. PAGRINDINIS TURINIO BLOKAS (DEŠINĖJE) *@
+        <div class="col-lg-9 col-xl-10 order-2">
+            <div class="p-4 shadow-lg bg-white rounded-3 border-top border-dark border-5" style="min-height: 80vh;">
+
+                @* HEADERIS SU PAIEŠKA *@
+                <div class="mb-4 pb-3 border-bottom d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <h4 class="fw-bold m-0 text-uppercase" style="letter-spacing: 1px;">
+                        <i class="fa fa-info-circle me-2 text-dark"></i> Skyriaus aktyvi lenta
+                    </h4>
+
+                    @* PAIEŠKOS LAUKAS SU MYGTUKU *@
+                    <div style="min-width: 350px;">
+                        <div class="input-group border rounded-pill bg-light shadow-sm search-container overflow-hidden p-1">
+                            <span class="input-group-text bg-transparent border-0 ps-3">
+                                <i class="fa fa-search text-muted"></i>
+                            </span>
+                            <input type="text"
+                                   class="form-control border-0 bg-transparent ps-2 py-2"
+                                   placeholder="Ieškoti įrašuose..."
+                                   style="box-shadow: none; font-size: 0.9rem;">
+
+                            @* PAIEŠKOS MYGTUKAS *@
+                            <button class="btn btn-dark rounded-pill px-4 fw-bold text-uppercase"
+                                    type="button"
+                                    style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                                Ieškoti
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @* TURINYS *@
+                <div class="row g-3">
+                    @await Component.InvokeAsync("DepartmentBoard",new{stringName="Index"})
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Tavo originalus hover efektas mygtukams */
+    .hover-raso-side {
+        transition: all 0.25s ease;
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+
+        .hover-raso-side:hover {
+            background-color: #f8f9fa !important;
+            transform: scale(1.02);
+            color: #000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-color: #212529 !important;
+        }
+
+    /* Paieškos lauko interakcija */
+    .search-container {
+        transition: all 0.3s ease;
+        border-color: #dee2e6 !important;
+    }
+
+        .search-container:focus-within {
+            background-color: #fff !important;
+            border-color: #212529 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+        }
+
+    /* Sticky fiksavimas */
+    .sticky-top {
+        z-index: 100;
+    }
+</style>

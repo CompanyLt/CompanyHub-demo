@@ -1,0 +1,143 @@
+﻿@using Darbu_records.Interfaces
+@model IWorker
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+
+            @* PROFILIO PAGRINDAS *@
+            <div class="card shadow-lg border-0 rounded-3 overflow-hidden mb-4">
+                <div class="card-body p-0">
+                    <div class="row g-0">
+
+                        @* KAIRĖ: NUOTRAUKA *@
+                        <div class="col-md-4 bg-light d-flex flex-column align-items-center justify-content-center p-5 border-end">
+                            <div class="shadow-sm rounded-circle overflow-hidden mb-4 border border-4 border-white" style="width: 150px; height: 150px;">
+                                <img src="~/images/sampleUser.jpg" class="w-100 h-100" style="object-fit: cover;" alt="Avatar">
+                            </div>
+                            <h5 class="fw-bold mb-1">@Model.name @Model.surname</h5>
+                            <p class="text-muted small mb-3">@Model.jobTitle</p>
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 text-uppercase fw-bold" style="font-size: 0.7rem;">
+                                @Model.status
+                            </span>
+                        </div>
+
+                        @* DEŠINĖ: INFORMACIJA *@
+                        <div class="col-md-8 p-4 p-md-5">
+                            <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">Darbuotojo informacija</h6>
+
+                            <div class="row g-4">
+                                <div class="col-6">
+                                    <div class="info-label">Stalo numeris</div>
+                                    <div class="info-value">@Model.tableNumber</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="info-label">Skyrius</div>
+                                    <div class="info-value">@Model.DepartmentName</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="info-label">Level</div>
+                                    <div class="info-value">@Model.progress</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="info-label">Experience</div>
+                                    <div class="info-value">@Model.expierence XP</div>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 fw-bold small text-muted">Progresas</h6>
+                            <div class="progress worker-progress shadow-sm">
+                                <div class="progress-bar bg-success" role="progressbar" style="width:@Model.progress%">@Model.progress%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* APDOVANOJIMAI *@
+            <div class="card shadow-lg border-0 rounded-3 p-4">
+                <h6 class="fw-bold text-uppercase small text-muted border-bottom pb-2 mb-4">
+                    <i class="fa fa-trophy me-2"></i> Apdovanojimai
+                </h6>
+                <div class="row g-3">
+                    @foreach (var achievement in Model.achievments)
+                    {
+                        var modalId = "modal" + achievement.Id;
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <div class="card border-0 shadow-sm h-100 p-3 text-center achievement-card" data-bs-toggle="modal" data-bs-target="#@modalId">
+                                <img src="~/achievment/images/@achievement.Image" class="img-fluid mb-2 achievement-icon" alt="@achievement.Name">
+                                <div class="fw-bold small" style="font-size: 0.75rem;">@achievement.Name</div>
+                            </div>
+
+                            @* Modalas *@
+                            <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="@modalId + " Label"" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="@modalId + " Label"">@achievement.Name</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <img src="~/achievment/images/@achievement.Image" class="img-fluid mb-3" alt="@achievement.Name">
+                                            <p>@achievement.Description</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @* GRĮŽIMO MYGTUKAS *@
+            <div class="text-center mt-4">
+                <a href="javascript:history.back()" class="btn btn-outline-dark fw-bold text-uppercase px-4">
+                    <i class="fa fa-arrow-left me-2"></i> Grįžti atgal
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .worker-progress {
+        height: 18px;
+        border-radius: 20px;
+        overflow: hidden;
+        background-color: #e9ecef;
+    }
+
+    .info-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: #6c757d;
+    }
+
+    .info-value {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #212529;
+    }
+
+    .achievement-card {
+        cursor: pointer;
+        transition: all .25s ease;
+        background: #f8f9fa;
+    }
+
+        .achievement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1) !important;
+        }
+
+    .achievement-icon {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        margin: auto;
+    }
+</style>

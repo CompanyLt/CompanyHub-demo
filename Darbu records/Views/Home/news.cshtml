@@ -1,0 +1,128 @@
+﻿
+        
+       @*   antra eilute su naujienom ir ivykiais *@
+<div class="row ">
+    
+
+
+    <div class="tab-content whats-news-area col-lg-8  ">
+      
+            <div class="col-lg-8 ">
+                <div class="section-tittle">
+                    <h3>Naujienos</h3>
+                </div>
+            </div>
+
+        
+                        <!-- card one -->
+
+
+
+        <div class="row">
+            @for (int i = 1; i < 4; i++)
+            {
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="~/img/news/whatNews@(i).jpg" class="card-img-top rounded-3" alt="Naujiena @(i)">
+                        <div class="card-body text-center">
+                            <span class="badge bg-primary mb-2">Naujiena @(i)</span>
+                            <h5 class="card-title">
+                                <a asp-area="" asp-controller="News" asp-action="post_detail" asp-route-id="@i"
+                                   class="text-decoration-none text-dark">
+                                    Naujienos pavadinimas
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+       
+    </div>
+
+
+
+
+
+                          
+                       
+     
+    @*  Naujienu pabaiga *@
+    <div class="col-lg-4 border-start mt-4 mt-lg-0">
+        <!-- Sekcijos pavadinimas IVYKIAI -->
+        <div class="mb-4">
+            <h3 class="fw-bold">Ivykiai</h3>
+        </div>
+
+        <!-- Ivykio kortele -->
+        <div class="card mb-4 shadow-sm">
+            <div class="row g-0">
+                <div class="col-4 d-flex flex-column justify-content-center align-items-center bg-light text-center p-2">
+                    <h2 class="display-6 mb-0">30</h2>
+                    <small class="text-muted">RUGP</small>
+                </div>
+                <div class="col-8 p-3">
+                    <h5 class="text-uppercase fw-bold mb-2">Ivykio pavadinimas</h5>
+                    <ul class="list-unstyled mb-2">
+                        <li><i class="fa fa-calendar-o me-2"></i> Menuo</li>
+                        <li><i class="fa fa-clock-o me-2"></i> Data</li>
+                        <li><i class="fa fa-location-arrow me-2"></i> Lokacija</li>
+                    </ul>
+                    <p class="mb-0">Trumpas ivykio aprasymas, kad naudotojas galetu greitai susipazinti.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kitas įvykis -->
+        <div class="card mb-4 shadow-sm">
+            <div class="row g-0">
+                <div class="col-4 d-flex flex-column justify-content-center align-items-center bg-light text-center p-2">
+                    <h2 class="display-6 mb-0">15</h2>
+                    <small class="text-muted">RUGP</small>
+                </div>
+                <div class="col-8 p-3">
+                    <h5 class="text-uppercase fw-bold mb-2">Kitas ivykis</h5>
+                    <ul class="list-unstyled mb-2">
+                        <li><i class="fa fa-calendar-o me-2"></i> Menuo</li>
+                        <li><i class="fa fa-clock-o me-2"></i> Data</li>
+                        <li><i class="fa fa-location-arrow me-2"></i> Lokacija</li>
+                    </ul>
+                    <p class="mb-0">Trumpas aprasymas.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container my-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" id="pollTitle"></h4>
+                    <p class="card-text" id="pollDescription"></p>
+                  @*   cia API kreiptis i kontroleri ir perduoti duomenys *@
+                    <form id="pollForm">
+                        <!-- Radio mygtukai bus generuojami čia -->
+                    </form>
+                    <button class="btn btn-primary mt-3" onclick="submitPoll()">Balsuoti</button>
+                </div>
+            </div>
+        </div>
+ 
+       
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+ </div>
+          
+
+           
+        
+

@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class=" side">
+
+    <form class="search" asp-area="" asp-controller="Svecias" asp-action="Search_Note">
+        <input type="search" name="search">
+        <input type="submit" value="Paieska">
+    </form>
+
+
+
+    @* meniu realizavimas *@
+    <nav class="meniu">
+        <ul>
+            <li>
+                <a class="mygtuku_plotis">Gedimai</a>
+                <ul class="submeniu">
+
+                    <li id="sub_gedimai"><a asp-controller="Svecias" asp-action="Index_gedimai">Gedimo registravimas</a></li>
+                    <li id="sub_gedimai"><a asp-controller="Svecias" asp-action="Index_gedimai">Spausdintuvai</a></li>
+                    <li id="sub_gedimai"><a asp-controller="Svecias" asp-action="Index_gedimai">iEKA</a></li>
+                    <li id="sub_gedimai"><a asp-controller="Svecias" asp-action="Index_gedimai">SCO</a></li>
+                    <li id="sub_gedimai"><a asp-controller="Svecias" asp-action="Index_gedimai">Bankiniai</a></li>
+                    <li id="sub_gedimai"><a asp-controller="Svecias" asp-action="Index_gedimai">Kiti</a></li>
+                    @*   <li><a href="#">Visi irasai</a></li> *@
+                </ul>
+
+
+            </li>
+            <li>
+                <a class="mygtuku_plotis">Instrukcijos</a>
+                <ul class="submeniu">
+                    <li><a asp-controller="svecias" asp-action="Index_instrukcijos">Instrukcijos registravimas</a></li>
+                    <li><a asp-controller="svecias" asp-action="Index_instrukcijos">Spausdintuvai</a></li>
+                    <li><a asp-controller="svecias" asp-action="Index_instrukcijos">iEKA</a></li>
+                    <li><a asp-controller="svecias" asp-action="Index_instrukcijos">SCO</a></li>
+                    <li><a asp-controller="svecias" asp-action="Index_instrukcijos">Bankiniai</a></li>
+                    <li><a asp-controller="svecias" asp-action="Index_instrukcijos">Kiti</a></li>
+
+
+                    @*   <li><a href="#">Visi irasai</a></li> *@
+                </ul>
+
+
+            </li>
+
+            <li><a href="#">Naujienos</a></li>
+            @*  <li><a href="#">options3</a></li>
+            <li><a href="#">options4</a></li> *@
+
+        </ul>
+
+    </nav>
+
+
+
+
+
+
+</div>

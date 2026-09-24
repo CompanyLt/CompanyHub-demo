@@ -1,0 +1,60 @@
+﻿@using Darbu_records.Models.Topic
+@model Comment
+
+<form asp-controller="Comment" asp-action="AddComment" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="topic_id" value="@Model.id" />
+    <input type="hidden" asp-for="title" value="@Model.title" />
+
+    <div class="card border-0 shadow-lg rounded-3 overflow-hidden mb-4">
+        @* Viršutinė dalis - Teksto rašymas *@
+        <div class="p-3 bg-white border-bottom">
+            <label class="form-label small fw-bold text-muted text-uppercase mb-2">
+                <i class="fa fa-pencil me-1"></i> Jūsų komentaras
+            </label>
+            <textarea asp-for="text" class="form-control border-0 p-0"                  
+                      rows="3"
+                      placeholder="Parašykite ką nors..."
+                      style="resize: none; box-shadow: none; font-size: 1.1rem;"
+                      required></textarea>
+            <span class="text-danger small"></span>
+        </div>
+
+        @* Apatinė dalis - Failų įkėlimas ir mygtukas *@
+        <div class="p-3 bg-light">
+            <div id="drop-zone"
+                 class="border border-2 border-dashed rounded-3 p-3 text-center bg-white text-muted mb-3 hover-raso-side"
+                 style="cursor: pointer; border-style: dashed !important;">
+                <i class="fa fa-cloud-upload fs-4 d-block mb-1"></i>
+                <span class="small fw-bold">Tempkite failus čia arba spustelėkite</span>
+            </div>
+
+            @* Paslėptas inputas *@
+            <input type="file" id="photosInput" name="FormFiles" class="d-none" multiple />
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-dark px-4 fw-bold text-uppercase rounded-pill shadow-sm">
+                    Skelbti <i class="fa fa-paper-plane ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<style>
+    /* Išlaikome tavo hover efektą drop-zone zonai */
+    #drop-zone {
+        transition: all 0.2s ease;
+    }
+
+        #drop-zone:hover {
+            background-color: #f8f9fa !important;
+            border-color: #212529 !important;
+            color: #212529 !important;
+        }
+
+    /* Pašaliname standartinį textarea rėmelį fokuso metu */
+    textarea:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+</style>

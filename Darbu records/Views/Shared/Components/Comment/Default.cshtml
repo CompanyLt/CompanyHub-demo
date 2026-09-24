@@ -1,0 +1,90 @@
+﻿@model List<Darbu_records.Models.Comment> 
+
+@if (Model != null && Model.Count > 0)
+{
+    @foreach (var comment in Model)
+    {
+
+
+
+        <div class="d-flex align-items-start mb-5">
+
+            @* KAIRĖ: AUTORIAUS INFO *@
+            <div class="me-4 text-center" style="min-width: 90px;">
+                <div class="bg-dark text-white rounded-3 mb-2 shadow overflow-hidden" style="height: 100px; width: 100px;">
+                    <img src="/Images/sampleUser.jpg"
+                         class="w-100 h-100"
+                         style="object-fit: cover;">
+                </div>
+                <div class="border rounded-2 bg-white py-1 shadow-sm">
+                    <small class="fw-bold text-uppercase" style="font-size: 0.65rem;">Autorius</small>
+                </div>
+            </div>
+
+            @* DEŠINĖ: TURINIO BURBULAS (PLATESNIS) *@
+            <div class="flex-grow-1 border border-2 rounded-3 p-4 bg-white shadow-sm" style="border-color: #dee2e6 !important;">
+
+                @* 1. TEKSTAS *@
+                <div class="mb-4">
+                    <p class="mb-0 text-dark fs-5" style="line-height: 1.6;">
+                        @comment.text
+                    </p>
+                </div>
+
+                <div class="row g-3 mb-4">
+             @if (comment.fileForm.filesCollection.Any())
+        {
+           
+                    @foreach (var file in comment.fileForm.filesCollection)
+                    {
+
+
+                        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                            <div class="border rounded-3 p-3 text-center bg-light h-100 hover-raso shadow-sm">
+                                <i class="fa fa-file-pdf-o text-danger fs-1 mb-2"></i>
+                                <div class="fw-bold text-truncate small">@file.name</div>
+                                <div class="text-muted mt-1" style="font-size: 0.7rem;">1.2 MB</div>
+                                 <a href="/Access/GetFile?url=@file.name&directory=@file.directory" class="btn btn-sm btn-dark w-100 mt-2">Atsisiųsti</a>
+                            </div>
+                        </div>
+                      
+                    }           
+        }
+
+        @if (comment.fileForm.photosCollection.Any())
+        {
+           
+                    @foreach (var p in comment.fileForm.photosCollection)
+                    {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="rounded shadow-sm overflow-hidden bg-light" style="height: 150px;">
+                        <img src="/Access/GetFile?url=@p.name&directory=@p.directory"
+                                 class="img-fluid w-100 h-100"
+                                 style="object-fit: cover; cursor: pointer;"
+                                 alt="Nuotrauka"
+                                 onclick="priartinimas(this)">
+                        </div>
+                    </div>
+                    }
+              
+        }
+
+
+    </div>
+
+
+                @* DATA *@
+                <div class="text-end mt-3">
+                    <small class="text-muted" style="font-size: 0.75rem;">
+                        <i class="fa fa-clock-o me-1"></i> @comment.created_at
+                    </small>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    <p class="text-muted">Komentarų nėra.</p>
+}

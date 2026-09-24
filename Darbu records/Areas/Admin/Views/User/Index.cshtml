@@ -1,0 +1,160 @@
+﻿@using Darbu_records.Interfaces
+@model List<IWorker>
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h4 class="fw-bold mb-0 text-dark">Darbuotojų sąrašas</h4>
+            <small class="text-muted fw-bold text-uppercase" style="font-size: 0.7rem;">Iš viso: @Model.Count</small>
+        </div>
+
+        <div style="max-width:400px; width:100%;">
+            <div class="input-group shadow-sm border rounded">
+                <span class="input-group-text bg-white border-0">
+                    <i class="fa fa-search text-muted"></i>
+                </span>
+                <input type="text" id="workerSearch"
+                       class="form-control border-0 ps-0"
+                       placeholder="Ieškoti darbuotojo..."
+                       style="box-shadow: none;">
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4" id="workerContainer">
+        @foreach (var worker in Model)
+        {
+            <div class="col-md-6 col-xl-4 col-xxl-3 worker-item">
+                <div class="card border-0 shadow-lg worker-card h-100">
+
+                    <div class="card-body d-flex align-items-center p-4">
+                        @* AVATARAS *@
+                        <div class="rounded-circle overflow-hidden shadow-sm me-3"
+                             style="width: 55px; height: 55px; min-width: 55px;">
+
+                            @if (worker.recordFile != null &&
+                           !string.IsNullOrEmpty(worker.recordFile.name) &&
+                           !string.IsNullOrEmpty(worker.recordFile.directory))
+                            {
+                                <img src="/Access/GetFile?url=@worker.recordFile.name&directory=@worker.recordFile.directory"
+                                     class="w-100 h-100"
+                                     style="object-fit: cover;"
+                                     alt="Grupes nuotrauka">
+                            }
+                            else
+                            {
+                                <img src="/Images/departmentAvatar.png"
+                                     class="w-100 h-100"
+                                     style="object-fit: cover;"
+                                     alt="Grupes nuotrauka">
+                            }
+
+                        </div>
+
+                        <div class="overflow-hidden">
+                            <h6 class="fw-bold mb-1 text-dark text-truncate">@worker.name</h6>
+                            <small class="text-muted d-block text-truncate">@worker.jobTitle</small>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-light d-flex justify-content-between align-items-center px-4 py-3 border-0">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle text-uppercase" style="font-size: 0.6rem;">
+                            Aktyvus
+                        </span>
+
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-white border shadow-sm dropdown-toggle fw-bold text-uppercase"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style="font-size: 0.65rem;">
+                                Veiksmai
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li>
+                                    <a class="dropdown-item py-2"
+                                       asp-area="Admin"
+                                       asp-controller="User"
+                                       asp-action="Details"
+                                       asp-route-id="@worker.id">
+                                        <i class="fa fa-info-circle me-2 text-primary"></i> Profilis
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2"
+                                       asp-area="Admin"
+                                       asp-controller="User"
+                                       asp-action="Edit"
+                                       asp-route-id="@worker.id">
+                                        <i class="fa fa-pencil me-2 text-success"></i> Redaguoti
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item py-2 text-danger" href="#">
+                                        <i class="fa fa-trash me-2"></i> Trinti
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<style>
+    /* PAGRINDINĖ KORTELĖ */
+    .worker-card {
+        transition: all 0.25s ease-in-out;
+        position: relative; /* Būtina z-index veikimui */
+    }
+
+        .worker-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+        }
+
+        /* DROPDOWN SPRENDIMAS TELEFONUI */
+        /* Kai dropdown atidaromas, iškeliame visą kortelę į viršų,
+           kad meniu neužsidengtų po kitomis kortelėmis */
+        .worker-card:has(.dropdown-toggle.show) {
+            z-index: 9999 !important;
+        }
+
+        /* Jei :has dar nepalaikoma (senesni Safari), papildomas saugiklis fokusui */
+        .worker-card:focus-within {
+            z-index: 9999 !important;
+        }
+
+    .btn-white {
+        background-color: #fff;
+    }
+
+    .dropdown-menu {
+        z-index: 10000 !important;
+        border-radius: 10px;
+    }
+</style>
+
+@* PAIEŠKOS SKRIPTAS *@
+<script>
+    document.getElementById('workerSearch')?.addEventListener('input', function (e) {
+        const text = e.target.value.toLowerCase();
+        document.querySelectorAll('.worker-item').forEach(item => {
+            const name = item.querySelector('h6').innerText.toLowerCase();
+            const job = item.querySelector('small').innerText.toLowerCase();
+
+            if (name.includes(text) || job.includes(text)) {
+                item.style.setProperty('display', 'block', 'important');
+            } else {
+                item.style.setProperty('display', 'none', 'important');
+            }
+        });
+    });
+</script>

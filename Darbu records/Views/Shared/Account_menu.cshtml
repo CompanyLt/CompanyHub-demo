@@ -1,0 +1,29 @@
+﻿
+@if (User?.Identity != null && User.Identity.IsAuthenticated )
+{
+
+    <div class="dropdown">
+        <div class="user-avatar-wrapper shadow-sm" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer; transition: 0.3s;">
+            <img class="rounded-circle border border-secondary" src="@Url.Content("/Images/login.png")" alt="nuotrauka" style="width: 40px; height: 40px; object-fit: cover;" />
+        </div>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow-lg dropdown-menu-dark border-secondary mt-2" aria-labelledby="dropdownMenuLink">
+            <li class="px-3 py-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <div class="fw-bold text-white">@User.FindFirstValue(ClaimTypes.Name)</div>
+                        <div class="badge bg-warning text-dark mt-1" style="font-size: 0.6rem;">LEVEL 1 PLAYER</div>
+                    </div>
+                </div>
+            </li>
+            <li><hr class="dropdown-divider border-secondary"></li>
+            <li><a class="dropdown-item py-2" asp-area="" asp-controller="User" asp-action="Index"><i class="fa fa-user-circle-o me-2"></i>Mano Profilis</a></li>
+            <li><a class="dropdown-item py-2 text-danger" asp-area="" asp-controller="Access" asp-action="RoleCheck"><i class="fa fa-sign-out me-2"></i>Nustatymai</a></li>
+            <li><a class="dropdown-item py-2 text-danger" asp-area="" asp-controller="Access" asp-action="logout"><i class="fa fa-sign-out me-2"></i>Atsijungti</a></li>
+        </ul>
+    </div>
+
+
+}
+
+

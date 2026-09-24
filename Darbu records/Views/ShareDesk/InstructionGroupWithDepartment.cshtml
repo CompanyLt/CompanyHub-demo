@@ -1,0 +1,93 @@
+﻿@using Darbu_records.Models.ShareDesk
+@model ShareForm // Tarkime, perduodi skyrių sąrašą
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            @* PAGRINDINIS BLOKAS *@
+            <div class="shadow-lg bg-white rounded-3 border-top border-dark border-5 p-5">
+
+                @* HEADERIS *@
+                <div class="text-center mb-5">
+                    <h3 class="fw-bold text-uppercase" style="letter-spacing: 2px;">Pasirinkite skyrių</h3>
+                    <p class="text-muted small text-uppercase fw-bold">Kam norite priskirti šią instrukcijų grupę?</p>
+                
+                    <hr class="w-25 mx-auto opacity-25">
+                </div>
+
+                @* SKYRIŲ SĄRAŠAS *@
+                <form asp-controller="ShareDesk" asp-action="ConfirmInstructionGroupShare" method="post">
+                    @* Perduodame groupId, kurį gavome iš praeito žingsnio *@
+                    <input type="hidden" asp-for="Id" value="@Model.Id" />
+
+                    <div class="row g-3">
+                        @foreach (var dept in Model.Departments)
+                        {
+                            <div class="col-md-6">
+                                <div class="position-relative">
+                                    <input type="radio" asp-for="Department_access" value="@dept.Id" id="dept-@dept.Id" class="btn-check" required>
+                                    <label class="btn btn-outline-light border text-dark w-100 py-4 shadow-sm hover-raso-side d-flex align-items-center px-4" for="dept-@dept.Id">
+                                        <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                            <i class="fa fa-users small"></i>
+                                        </div>
+                                        <div class="text-start">
+                                            <input type="hidden" asp-for="Department_name" value="@dept.Name" />
+                                            <div class="fw-bold text-uppercase small">@dept.Name</div>
+                                            <div class="text-muted" style="font-size: 0.7rem;">Spustelėkite, kad pasirinktumėte</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    @* Description laukelis *@
+                    <div class="mt-4 mb-3 text-start">
+                        <label asp-for="Description" class="form-label fw-bold text-uppercase small text-muted">Aprašymas</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Palikite savo aprašymą čia..."></textarea>
+                    </div>
+
+                    @* VEIKSMŲ MYGTUKAI APAČIOJE *@
+                    <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center">
+                        <a href="javascript:history.back()" class="btn btn-link text-muted text-decoration-none fw-bold text-uppercase small">
+                            <i class="fa fa-arrow-left me-1"></i> Grįžti
+                        </a>
+                        <button type="submit" class="btn btn-dark px-5 py-2 fw-bold text-uppercase shadow">
+                            Patvirtinti pasirinkimą <i class="fa fa-check-circle ms-2 text-success"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Išlaikome tavo hover efektą ir pritaikome radio pasirinkimui */
+    .hover-raso-side {
+        transition: all 0.25s ease;
+        border-radius: 12px;
+        border-color: #dee2e6 !important;
+    }
+
+        .hover-raso-side:hover {
+            background-color: #f8f9fa !important;
+            transform: translateY(-3px);
+            border-color: #212529 !important;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+        }
+
+    /* Stilius, kai radio mygtukas pažymėtas */
+    .btn-check:checked + .hover-raso-side {
+        background-color: #fff !important;
+        border-color: #212529 !important;
+        border-width: 2px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+
+        .btn-check:checked + .hover-raso-side .rounded-circle {
+            background-color: #198754 !important; /* Žalia spalva, kai pasirinkta */
+        }
+</style>
